@@ -1,5 +1,5 @@
 {
-  "name": "cypress-wordpress",
+  "name": "wp-cypress",
   "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
@@ -12,7 +12,7 @@
     "postinstall": "./bin/postinstall.sh"
   },
   "author": "Big Bite",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
