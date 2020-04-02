@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset name="Big Bite CS" namespace="BigBite">
+  <description>A code standard for use in all Big Bite PHP projects — WordPress VIP + PSR2 mashup</description>
+
+  <config name="encoding" value="utf-8" />
+  <config name="testVersion" value="7.1-" />
+
+  <arg name="tab-width" value="4" />
+  <arg name="report-width" value="192" />
+  <arg name="report" value="full" />
+  <arg name="extensions" value="php" />
+  <arg value="q" />
+  <arg value="s" />
+
+  <ini name="memory_limit" value="1024M" />
+
+	<!-- Ignore vendor directories -->
+	<exclude-pattern>*/.git/*</exclude-pattern>
+	<exclude-pattern>*/tests/*</exclude-pattern>
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
+
+	<rule ref="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket" />
+	<rule ref="PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket" />
+
+	<!-- Include all of WP rulesets -->
+  <rule ref="WordPress-Core">
+    <exclude name="WordPress.Files.FileName" />
+  </rule>
+
+  <rule ref="WordPress-Extra" />
+
+	<rule ref="WordPress-VIP-Go" />
+</ruleset>

@@ -1,0 +1,38 @@
+## Node.js
+node_modules
+yarn-error.log
+
+# Vagrant
+.vagrant
+
+# Web/PHPstorm
+.idea
+
+# Visual studio code
+.vscode
+
+# Sublime
+*.sublime-workspace
+*.sublime-project
+
+# Atom
+.imdone
+
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Project Specific
+docker-compose.yml
+debug.log
