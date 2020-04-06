@@ -198,7 +198,7 @@ Trait | Description
 #### Properties
 
 Property |  Description
---- | --- | ---
+--- | ---
 protected $generate | Reference to a [Generator](#class-generator) instance
 protected $faker | Reference to a Faker\Generator instance, see [Faker docs](https://github.com/fzaninotto/Faker#create-fake-data)
 
@@ -224,7 +224,7 @@ run() | Executes when seeded | void
 #### Methods
 
 Method |  Description | Return
---- | --- | --- | ---
+--- | --- | ---
 now() | Get the current date in `Y-m-d H:i:s` format | string
 
 ---
@@ -233,7 +233,7 @@ now() | Get the current date in `Y-m-d H:i:s` format | string
 #### Methods
 
 Method |  Description | Return
---- | --- | --- | ---
+--- | --- | ---
 posts( array $properties, number $count ) | Generate posts with dummy data | void
 
 
