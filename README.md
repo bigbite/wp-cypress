@@ -189,14 +189,20 @@ saveCurrentPost() | If on a post's edit page, save the psot | `cy.saveCurrentPos
 
 ### abstract class Seeder implements [SeederInterface](#interface-seederinterface)
 
+#### Traits
+
 Trait | Description
 --- | ---
 [Date](#trait-date) | Shared helper methods for dates
+
+#### Properties
 
 Property |  Description
 --- | --- | ---
 protected $generate | Reference to a [Generator](#class-generator) instance
 protected $faker | Reference to a Faker\Generator instance, see [Faker docs](https://github.com/fzaninotto/Faker#create-fake-data)
+
+#### Methods
 
 Method |  Description | Return | From
 --- | --- | --- | ---
@@ -204,6 +210,8 @@ now() | Get the current date in `Y-m-d H:i:s` format | string  | [Date](#trait-d
 
 ---
 ### interface SeederInterface
+
+#### Methods
 
 Method |  Description | Return
 --- | --- | ---
@@ -213,12 +221,16 @@ run() | Executes when seeded | void
 
 ### trait Date 
 
+#### Methods
+
 Method |  Description | Return
 --- | --- | --- | ---
 now() | Get the current date in `Y-m-d H:i:s` format | string
 
 ---
 ### class Generator
+
+#### Methods
 
 Method |  Description | Return
 --- | --- | --- | ---
