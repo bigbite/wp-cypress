@@ -1,7 +1,7 @@
 #!/bin/bash
 
 WORKING_DIR="$INIT_CWD"
-PACKAGE_DIR="$INIT_CWD/node_modules/cypress-wordpress"
+PACKAGE_DIR="$INIT_CWD/node_modules/wp-cypress"
 LOGFILE="$PACKAGE_DIR/debug.log"
 DOMAIN=http://localhost
 
@@ -40,6 +40,6 @@ case $1 in
     ;;
 
   *)
-    echo -e "Available Commands: \n - wp-cypress start \n - wp-cypress stop \n - wp-cypress wp"
+    echo -e "Available Commands: \n - wp-cypress start \n - wp-cypress stop \n - wp-cypress wp \n - wp-cypress resetDB"
     ;;
 esac

@@ -4,8 +4,11 @@ namespace WP_Cypress\Seeder;
 
 use \WP_Cypress\Seeder\SeederInterface;
 use \WP_Cypress\Seeder\Generator;
+use \WP_Cypress\Seeder\Traits\Date;
 
 abstract class Seeder implements SeederInterface {
+	use Date;
+
 	protected $generate;
 
 	protected $faker;

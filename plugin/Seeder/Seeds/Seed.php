@@ -2,8 +2,8 @@
 
 namespace WP_Cypress\Seeder\Seeds;
 
-use WP_Cypress\Seeder\Seeds\SeedInterface;
-use WP_Cypress\Seeder\Traits\Date;
+use \WP_Cypress\Seeder\Seeds\SeedInterface;
+use \WP_Cypress\Seeder\Traits\Date;
 
 abstract class Seed implements SeedInterface {
 	use Date;

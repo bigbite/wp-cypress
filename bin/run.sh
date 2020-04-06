@@ -53,22 +53,15 @@ function stop_spinner_success {
 function stop_spinner_error {
   stop_spinner " ${RED}Error:${NORMAL}" "$1"
 
-  echo "Would you like to view logs? (Y/N)"
-  read answer
+  echo "See logfile for more info: $LOGFILE"
 
-  case $answer in
-    y|Y) open -t $LOGFILE && exit 0 ;;
-    n|N) echo "Logfile: $LOGFILE" ;;
-    *) echo "Logfile: $LOGFILE" ;;
-  esac
-
-  exit 1
+  exit
 }
 
 run() {
   spinner "$2"
 
-  if "$1" 3>&1 1>>${LOGFILE} 2>&1 ; then
+  if "$1" 1>>${LOGFILE} 2>&1 ; then
     stop_spinner_success "$3"
   else
     stop_spinner_error "$4"

@@ -1,7 +1,19 @@
-wp.domReady(() => {
-  var isVisible = wp.data.select('core/nux').areTipsEnabled();
+const { wp } = window;
 
-  if (isVisible) {
-    wp.data.dispatch('core/nux').disableTips();
+wp.domReady(() => {
+  const { dispatch, select } = wp.data;
+
+  const nux = select('core/nux');
+
+  if (!nux) {
+    if (select('core/edit-post').isFeatureActive('welcomeGuide')) {
+      dispatch('core/edit-post').toggleFeature('welcomeGuide');
+    }
+
+    return;
+  }
+
+  if (nux.areTipsEnabled()) {
+    dispatch('core/nux').disableTips();
   }
 });
