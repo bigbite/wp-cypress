@@ -3,7 +3,6 @@
 ## Contents
 
 - [Why](#why)
-- [TL;DR](#tl;dr)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Getting Started](#getting-started)
@@ -25,14 +24,6 @@ We make it easier to:
 - Seed the database with test data
 - Perform WordPress specific actions when writing tests
 
-## TL;DR 
-
-1. `yarn add cypress --dev`
-1. `yarn add wp-cypress --dev`
-1. `import 'wp-cypress';` in `support/index.js`
-1. `yarn run wp-cypress start`
-1. `yarn run cypress open`
-
 ## Requirements
 
 - Yarn
@@ -44,13 +35,10 @@ We make it easier to:
 
 Ensure [Cypress](https://github.com/cypress-io/cypress/) is installed, then install WP Cypress.
 
-TODO - not on npm yet
-
 ```sh
 yarn add wp-cypress --dev
 ```
-
-After installation, a new directory will be created in the project root called `wp-cypress`. To add the additional cypress commands you need to import the package in cypress directories `support/index.js` file.
+To add the additional cypress commands you need to import the package in cypress directories `support/index.js` file.
 
 ```javascript
 // ***********************************************************
@@ -71,6 +59,16 @@ After installation, a new directory will be created in the project root called `
 import 'wp-cypress';
 ```
 
+By default the testing environment will run on `http://localhost`. Ensure you have nothing else running on port 80 and add the base URL to your cypress config.
+
+###### /cypress.json
+```json
+{
+  "baseUrl": "http://localhost",
+  "pageLoadTimeout": 30000
+}
+```
+
 ## Getting Started
 
 ### CLI
@@ -88,9 +86,11 @@ resetDB | Reset the database in the running container to it's initial state | `y
 
 ### Env
 
-To start the test environment run `yarn run wp-cypress start` in your project root directory. 
+To start the test environment run `yarn run wp-cypress start` in your project root directory.
 
 This may take a while as it builds and starts a new docker container. However, you only need to run this once. This commands also acts as a restart, firstly removing any containers and volumes before starting the docker container.
+
+> Having trouble? Use File sharing to allow local directories on the Mac to be shared with Linux containers. See more https://docs.docker.com/docker-for-mac/#file-sharing
 
 Once it is running there is no need to re-start it every time you run cypress. WP Cypress will reset the database to it's initial state between each suite of integration tests to ensure that each integration will have a clean slate.
 
