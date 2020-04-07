@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "description": "WordPress end to end testing with Cypress.io",
   "main": "lib/index.js",
+  "repository": "https://github.com/bigbite/wp-cypress",
+  "author": {
+    "name": "Big Bite",
+    "url": "https://bigbite.net",
+    "twitter": "@BigBite"
+  },
+  "license": "MIT",
   "bin": {
     "wp-cypress": "./bin/script.sh"
   },
@@ -15,8 +22,6 @@
       "pre-push": "yarn run lint:scripts && $(composer config -g home)/vendor/bin/phpcs ./plugin"
     }
   },
-  "author": "Big Bite",
-  "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
