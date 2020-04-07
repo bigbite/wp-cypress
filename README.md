@@ -56,7 +56,7 @@ To add the additional cypress commands you need to import the package in cypress
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-import 'wp-cypress';
+import '@bigbite/wp-cypress';
 ```
 
 By default the testing environment will run on `http://localhost`. Ensure you have nothing else running on port 80 and add the base URL to your cypress config.
