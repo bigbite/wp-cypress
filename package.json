@@ -1,5 +1,5 @@
 {
-  "name": "wp-cypress",
+  "name": "@bigbite/wp-cypress",
   "version": "0.1.0",
   "description": "WordPress end to end testing with Cypress.io",
   "main": "lib/index.js",
@@ -10,6 +10,7 @@
     "twitter": "@BigBite"
   },
   "license": "MIT",
+  "publishConfig": { "access": "public" },
   "bin": {
     "wp-cypress": "./bin/script.sh"
   },
