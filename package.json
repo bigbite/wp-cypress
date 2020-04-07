@@ -10,7 +10,9 @@
     "twitter": "@BigBite"
   },
   "license": "MIT",
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "wp-cypress": "./bin/script.sh"
   },
@@ -20,7 +22,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn run lint:scripts && $(composer config -g home)/vendor/bin/phpcs ./plugin"
+      "pre-push": "yarn run lint:scripts"
     }
   },
   "devDependencies": {
