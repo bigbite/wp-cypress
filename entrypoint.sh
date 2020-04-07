@@ -48,7 +48,7 @@ chown "www-data:www-data" .htaccess
 
 until mysqladmin ping -h"$WP_DB_HOST" --silent &> /dev/null
 do
-  ((c++)) && ((c==10)) && break
+  ((c++)) && ((c==30)) && break
   sleep 2
 done
 
