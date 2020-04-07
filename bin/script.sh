@@ -1,7 +1,7 @@
 #!/bin/bash
 
 WORKING_DIR="$INIT_CWD"
-PACKAGE_DIR="$INIT_CWD/node_modules/wp-cypress"
+PACKAGE_DIR="$INIT_CWD/node_modules/@bigbite/wp-cypress"
 LOGFILE="$PACKAGE_DIR/debug.log"
 DOMAIN=http://localhost
 
