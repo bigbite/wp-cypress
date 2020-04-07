@@ -1,6 +1,6 @@
-const { wp } = window;
+const { wp, jQuery } = window;
 
-wp.domReady(() => {
+jQuery(document).ready(() => {
   const { dispatch, select } = wp.data;
 
   const nux = select('core/nux');
