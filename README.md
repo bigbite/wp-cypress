@@ -36,7 +36,7 @@ We make it easier to:
 Ensure [Cypress](https://github.com/cypress-io/cypress/) is installed, then install WP Cypress.
 
 ```sh
-yarn add wp-cypress --dev
+yarn add @bigbite/wp-cypress --dev
 ```
 To add the additional cypress commands you need to import the package in cypress directories `support/index.js` file.
 
