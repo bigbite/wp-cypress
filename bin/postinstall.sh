@@ -6,19 +6,11 @@ fi
 
 cd $INIT_CWD
 
-if [ ! -d ./wp-cypress ]; then
-  mkdir wp-cypress
+if [ ! -d ./cypress ]; then
+  mkdir cypress
 fi
 
-cd wp-cypress
-
-if [ ! -f .env ]; then
-  cat > .env <<EOF
-VERSION=latest
-PLUGINS=()
-THEMES=()
-EOF
-fi
+cd cypress
 
 if [ ! -d ./seeds ]; then
   mkdir seeds

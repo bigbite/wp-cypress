@@ -36,3 +36,4 @@ $RECYCLE.BIN/
 # Project Specific
 docker-compose.yml
 debug.log
+config.json

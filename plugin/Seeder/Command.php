@@ -34,8 +34,6 @@ class Command {
 
 		require_once $seeds_full_path;
 
-		\WP_CLI::log( 'Seeding ' . $seed_name . '...' );
-
 		$start_time = microtime( true );
 		new $seed_name();
 		$run_time = round( microtime( true ) - $start_time, 2 );
