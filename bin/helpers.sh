@@ -66,8 +66,8 @@ updocker () {
 waitforwordpress () {
   until wpcli core is-installed
   do
-    ((c++)) && ((c==2)) && break
-    sleep 30
+    ((c++)) && ((c==30)) && break
+    sleep 2
   done
 
   if wpcli core is-installed ; then
