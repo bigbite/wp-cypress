@@ -14,8 +14,8 @@ fi
 wp core --allow-root download \
   --version=${WP_VERSION} \
   --force --debug
-c=1
 
+c=1
 until mysqladmin ping -h"$WP_DB_HOST" --silent &> /dev/null
 do
   c=$((c + 1))
