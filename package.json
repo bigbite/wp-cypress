@@ -1,6 +1,6 @@
 {
   "name": "@bigbite/wp-cypress",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "WordPress end to end testing with Cypress.io",
   "main": "lib/index.js",
   "repository": "https://github.com/bigbite/wp-cypress",
@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "publishConfig": {
-    "access": "public"
+    "access": "private"
   },
   "bin": {
     "wp-cypress": "./bin/script.sh"
