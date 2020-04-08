@@ -65,4 +65,5 @@ wp --allow-root core install \
   --admin_password=password \
   --admin_email="admin@test.com" \
   --skip-email \
+
 exec "$@"
