@@ -1,13 +1,11 @@
 #!/bin/bash
 set -eu
-
 if [ -f wp-config.php ]; then
   rm wp-config.php
 fi
 
 : ${WP_LOCALE:=${WP_LOCALE:-en_US}}
 : ${WP_ADMIN_EMAIL:=${WP_ADMIN_EMAIL:-admin@example.com}}
-
 : ${WP_DB_HOST:=db}
 : ${WP_DB_USER:=${MYSQL_ENV_MYSQL_USER:-root}}
 : ${WP_DB_PASSWORD:=''}
@@ -16,6 +14,17 @@ fi
 wp core --allow-root download \
   --version=${WP_VERSION} \
   --force --debug
+c=1
+
+until mysqladmin ping -h"$WP_DB_HOST" --silent &> /dev/null
+do
+  c=$((c + 1))
+  if [ $c -eq 60 ]
+  then
+    break
+  fi
+  sleep 2
+done
 
 # Generate the wp-config file for debugging.
 wp core --allow-root config \
@@ -46,12 +55,6 @@ EOF
 
 chown "www-data:www-data" .htaccess
 
-until mysqladmin ping -h"$WP_DB_HOST" --silent &> /dev/null
-do
-  ((c++)) && ((c==30)) && break
-  sleep 2
-done
-
 # Create the database.
 wp db --allow-root create
 
@@ -62,6 +65,4 @@ wp --allow-root core install \
   --admin_password=password \
   --admin_email="admin@test.com" \
   --skip-email \
-
 exec "$@"
-
