@@ -17,7 +17,7 @@
     "wp-cypress": "./bin/script.js"
   },
   "scripts": {
-    "lint:scripts": "eslint \"lib/**/*.js\" \"plugin/**/*.js\"",
+    "lint:scripts": "eslint \"lib/**/*.js\" \"bin/**/*.js\" \"plugin/**/*.js\"",
     "postinstall": "./bin/postinstall.sh"
   },
   "husky": {
