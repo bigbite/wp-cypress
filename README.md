@@ -33,12 +33,22 @@ We make it easier to:
 
 ## Installation
 
-Ensure [Cypress](https://github.com/cypress-io/cypress/) is installed, then install WP Cypress.
+1. Install cypress
+
+```sh
+yarn add cypress --dev
+```
+2. Initialize Cypress
+
+```sh
+yarn run cypress open
+```
+3. Install WP Cypress
 
 ```sh
 yarn add @bigbite/wp-cypress --dev
 ```
-To add the additional cypress commands you need to import the package in cypress directories `support/index.js` file.
+4. Import WP Cypress in `/cypress/support/index.js` 
 
 ```javascript
 // ***********************************************************
@@ -59,30 +69,39 @@ To add the additional cypress commands you need to import the package in cypress
 import '@bigbite/wp-cypress';
 ```
 
-By default the testing environment will run on `http://localhost`. Ensure you have nothing else running on port 80 and add the base URL to your cypress config.
+5. Update `/cypress.json` with your environment variables.
 
-###### /cypress.json
 ```json
 {
   "baseUrl": "http://localhost",
-  "pageLoadTimeout": 30000
+  "pageLoadTimeout": 30000,
+  "wp": {
+    "version": "5.3.2",
+    "plugins": [
+      "./"
+    ],
+    "themes": []
+  }
 }
+
 ```
 
 ## Getting Started
 
 ### CLI
 
-WP Cypress has now been installed to your `./node_modules` directory, with its binary executable accessible from `./node_modules/.bin`.
+WP Cypress has been installed to your `./node_modules` directory, with its binary executable accessible from `./node_modules/.bin`.
 
 The available commands are now available to run in your project root directory:
 
 Name |  Description | Example
 --- | --- | ---
-start | Starts a test environment running on port 80 | `yarn run wp-cypress start`
-stop | Stop a test environment if it is already running | `yarn run wp-cypress stop`
-wp | Execute the WordPress CLI in the running container | `yarn run wp-cypress wp cli version`
-resetDB | Reset the database in the running container to it's initial state | `yarn run wp-cypress resetDB`
+start | Starts a test environment | `yarn run wp-cypress start`
+stop | Stops a running test environment | `yarn run wp-cypress stop`
+wp | Execute the WordPress CLI in the running container | `yarn run wp-cypress wp "cli version"`
+resetDB | Restore the database in the running container to it's initial state | `yarn run wp-cypress resetDB`
+
+> Stuck? Try running `yarn run wp-cypress --help` 
 
 ### Env
 
@@ -92,40 +111,38 @@ This may take a while as it builds and starts a new docker container. However, y
 
 > Having trouble? Use File sharing to allow local directories on the Mac to be shared with Linux containers. See more https://docs.docker.com/docker-for-mac/#file-sharing
 
-Once it is running there is no need to re-start it every time you run cypress. WP Cypress will reset the database to it's initial state between each suite of integration tests to ensure that each integration will have a clean slate.
+Once it is running there is no need to re-start it every time you run cypress. WP Cypress will restore the database to its initial state between each suite of integration tests to ensure a clean slate between tests.
 
-In the `wp-cypress` directory you can add environment variables to the `.env` file. You can use this to specify the version of WordPress and which plugins/themes to install. All plugins will be activated and the first theme in the list will be activated. If this file is changed, you will need to re-run `wp-cypress start` to see the changes take effect.
+You can add environment variables to the `cypress.json` configuration file. You can use this to specify the version of WordPress and which plugins/themes to install. All plugins will be activated and the first theme in the list will be activated. If this file is changed, you will need to re-run `wp-cypress start` to see the changes take effect. Composer is recommended to manage plugins and themes to if they do not exist in your project directory.
 
-Composer is recommended to manage plugins and themes to if they do not exist in your project directory. If the project directory is a plugin or theme you wish to be included, you can include it by adding a `/` which will act as a reference to the project directory.
+###### cypress.json
+```json
+{
+  "baseUrl": "http://localhost",
+  "pageLoadTimeout": 30000,
+  "wp": {
+    "version": "5.4", 
+    "plugins": [ 
+      "./"
+      "./absolute/path/to/plugin"
+    ],
+    "themes": [
+      "../themes/absolute/path/to/theme"
+    ]
+  }
+}
 
-###### /wp-cypress/.env
-```sh
-VERSION=latest
-
-PLUGINS=(
-  '/'
-  '/absolute/path/to/plugin'
-  '/vendor/path/to/plugin'
-)
-
-THEMES=(
-  '/vendor/path/to/theme'
-)
 ```
 
-An additional plugin will be installed that contains some functionality that makes testing easier. This includes skipping auth, disabling tooltips, polyfilling the fetch api and seeding. As this package progresses there may be more functionality included.
-
-### Cypress
-
-Your environment will run on port 80 or `http://localhost`, which will work by default with cypress. To learn more about writing tests with cypress visit their documentation on how to [Write Your First Test](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html#Add-a-test-file). This package extends cypress with some additional commands that may be useful, please refer to the [API below](#api).
+An additional plugin will be installed that contains some of the logic that drives the functionality in this package.
 
 ### Seeds
 
-In the `wp-cypress` directory there is another directory named `seeds`. Here lives our seeds, which we can use to populate the database with data. By default there will already be one Seed: `Init`. As it's name suggests, this will be ran when the container is initialised and therefore is a good place to create most data. Using the `resetDB` command will reset the database and run the `Init` seed again.
+In the `cypress` directory there a directory specfic to wp-cypress named `seeds`. Here lives our seeds, which we can use to populate the database with data. By default there will already be one Seed: `Init`. As it's name suggests, this will be ran when the container is initialised and therefore is a good place to create most data. Using the `resetDB` command will reset the database and run the `Init` seed again.
 
 Seeds executed in the running container allowing you to perform any required logic you need to set up your environment. Alongside this there are some helpful tools to help generate dummy data.
 
-If you wish to add more seeds, any file in the `seeds` directory is autoloaded to be executed at a later date using `wp seed ClassName` in the running container or alternatively using the seed command `cy.seedDB('ClassName')`. **The file's name must match the name of the class.**
+If you wish to add more seeds, any file in the `seeds` directory is autoloaded to be executed at a later date using `wp seed ClassName` in the running container or alternatively using the seed command `cy.seedDB('ClassName')`. 
 
 #### Example
 
@@ -145,6 +162,12 @@ class MySeeder extends Seeder {
 	}
 }
 ```
+> The file's name must match the name of the class.
+
+
+### Cypress
+
+Now you can begin writing tests! To learn more about writing tests with cypress visit their documentation on how to [Write Your First Test](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html#Add-a-test-file). This package extends cypress with some additional commands that may be useful, please refer to the [API below](#api).
 
 ## API
 
@@ -155,13 +178,13 @@ class MySeeder extends Seeder {
 Command | Description | Example
 --- | --- | ---
 wp(command) | Execute the WP CLI in the running container | `cy.wp('cli version')`
-seedDB(seed) | Run a seeder | `cy.wp('SeedName')` 
+seedDB(seed) | Run a seeder | `cy.seedDB('SeedName')` 
 resetDB() | Restore the database to it's initial state | `cy.resetDB()`
-installTheme(name) | Install a theme | `cy.installTheme(name)`
-activateTheme(name) | Activate a theme | `cy.activateTheme(name)`
-installPlugin(name) | Install a plugin | `cy.installPlugin(name)`
-activatePlugin(name) | Active a plugin | `cy.activatePlugin(name)`
-deactivatePlugin(name) | Deactivate a plugin | `cy.deactivatePlugin(name)`
+installTheme(name) | Install a theme | `cy.installTheme('my-theme')`
+activateTheme(name) | Activate a theme | `cy.activateTheme('my-theme')`
+installPlugin(name) | Install a plugin | `cy.installPlugin('my-plugin')`
+activatePlugin(name) | Active a plugin | `cy.activatePlugin('my-plugin')`
+deactivatePlugin(name) | Deactivate a plugin | `cy.deactivatePlugin('my-plugin')`
 visitAdmin() | Visit the WordPress admin panel | `cy.visitAdmin()`
 
 #### DOM

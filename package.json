@@ -1,6 +1,6 @@
 {
   "name": "@bigbite/wp-cypress",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "WordPress end to end testing with Cypress.io",
   "main": "lib/index.js",
   "repository": "https://github.com/bigbite/wp-cypress",
@@ -14,10 +14,10 @@
     "access": "private"
   },
   "bin": {
-    "wp-cypress": "./bin/script.sh"
+    "wp-cypress": "./bin/script.js"
   },
   "scripts": {
-    "lint:scripts": "eslint \"lib/**/*.js\" \"plugin/**/*.js\"",
+    "lint:scripts": "eslint \"lib/**/*.js\" \"bin/**/*.js\" \"plugin/**/*.js\"",
     "postinstall": "./bin/postinstall.sh"
   },
   "husky": {
@@ -34,6 +34,9 @@
     "husky": "^4.2.3"
   },
   "dependencies": {
+    "commander": "^5.0.0",
+    "ora": "^4.0.3",
+    "shelljs": "^0.8.3",
     "unfetch": "^4.1.0"
   }
 }
