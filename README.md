@@ -154,11 +154,16 @@ use \WP_Cypress\Seeder\Seeder;
 
 class MySeeder extends Seeder {
 	public function run() {
-		$title = $this->faker->sentence();
+    $title = $this->faker->sentence();
+
 		$this->generate->posts( [
 			'post_title' => $title,
 			'import_id'  => 10,
-		], 1 );
+    ], 1 );
+    
+    $this->generate->comments( [
+			'comment_post_ID' => 20,
+		], 10 );
 	}
 }
 ```
@@ -258,7 +263,7 @@ now() | Get the current date in `Y-m-d H:i:s` format | string
 Method |  Description | Return
 --- | --- | ---
 posts( array $properties, number $count ) | Generate posts with dummy data | void
-
+comments( array $properties, number $count ) | Generate comments with dummy data | void
 
 
 
