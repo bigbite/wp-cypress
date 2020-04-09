@@ -22,10 +22,10 @@ class Generator {
 	public function comments( $properties = [], $count = 1 ) {
 		$progress = \WP_CLI\Utils\make_progress_bar( 'Generating comments', $count );
 
-		$post = new Comment( $properties );
+		$comment = new Comment( $properties );
 
 		for ( $i = 1; $i <= $count; $i++ ) {
-			$post->generate();
+			$comment->generate();
 			$progress->tick();
 		}
 
