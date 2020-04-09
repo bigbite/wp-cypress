@@ -20,7 +20,7 @@ class Comment extends Seed {
 		$id = wp_insert_comment( array_merge( $this->defaults(), $this->properties ) );
 
 		if ( isset( $this->properties['comment_meta'] ) && is_array( $this->properties['comment_meta'] ) ) {
-			foreach ( $this->properties['user_meta'] as $key => $value ) {
+			foreach ( $this->properties['comment_meta'] as $key => $value ) {
 				add_comment_meta( $id, $key, $value );
 			}
 		}
