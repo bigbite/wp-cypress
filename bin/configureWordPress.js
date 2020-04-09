@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const sleep = require('./utils/sleep');
 const { wpcli } = require('./utils/exec');
 const run = require('./utils/run');
 
