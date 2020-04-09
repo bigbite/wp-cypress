@@ -1,7 +1,7 @@
 const shell = require('shelljs');
 const { wpcli } = require('./utils/exec');
 
-const run = require('./run');
+const run = require('./utils/run');
 
 const wp = async (command, packageDir, logFile) => {
   shell.cd(packageDir);

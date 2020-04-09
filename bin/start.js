@@ -4,7 +4,7 @@ const shell = require('shelljs');
 const retryCommand = require('./utils/retryCommand');
 const createConfig = require('./createConfig');
 const { exec, wpcli } = require('./utils/exec');
-const run = require('./run');
+const run = require('./utils/run');
 const configureWordPress = require('./configureWordPress');
 
 const start = async (userConfig, packageDir, logFile) => {

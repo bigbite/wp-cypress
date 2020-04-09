@@ -1,6 +1,6 @@
 const shell = require('shelljs');
 const { wpcli } = require('./utils/exec');
-const run = require('./run');
+const run = require('./utils/run');
 const configureWordPress = require('./configureWordPress');
 
 const resetDB = async (packageDir, logFile) => {
