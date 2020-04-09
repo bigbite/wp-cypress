@@ -7,10 +7,19 @@ const run = require('./utils/run');
 const configureWordPress = async (configFilePath, logFile) => {
   const config = JSON.parse(fs.readFileSync(configFilePath, 'utf8'));
 
+  if (config.timezone) {
+    await run(
+      async () => wpcli(`option update timezone_string ${config.timezone}`, logFile),
+      'Updating Timezone',
+      'Timezone updated',
+      logFile,
+    );
+  }
+
   await run(
     async () => wpcli('plugin activate wp-cypress', logFile),
-    'Activating WP Cypress plugin',
-    'WP Cypress plugin Activated',
+    'Activating wp-cypress plugin',
+    'wp-cypress plugin activated',
     logFile,
   );
 
