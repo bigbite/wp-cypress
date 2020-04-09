@@ -12,7 +12,6 @@ const stop = async (packageDir, logFile) => {
     'Test Environment stopped',
     logFile,
   );
-
 };
 
 module.exports = stop;
