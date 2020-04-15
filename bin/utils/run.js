@@ -2,7 +2,10 @@ const ora = require('ora');
 const shell = require('shelljs');
 
 const run = async (command, start, succeed = false, logFile = false) => {
-  const spinner = ora(start).start();
+  const spinner = ora({
+    text: start,
+    prefixText: 'wp-cypress',
+  }).start();
 
   const { code, stdout, stderr } = await command();
 

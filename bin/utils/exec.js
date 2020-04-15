@@ -23,5 +23,6 @@ const exec = (cmd, logFile) => new Promise((resolve) => {
 
 module.exports = {
   exec,
+  cli: (command, logFile) => exec(`docker-compose exec -T wp ${command}`, logFile),
   wpcli: (command, logFile) => exec(`docker-compose exec -T wp wp --allow-root ${command}`, logFile),
 };

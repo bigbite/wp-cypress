@@ -112,7 +112,7 @@ This may take a while as it builds and starts a new docker container. However, y
 
 > Having trouble? Use File sharing to allow local directories on the Mac to be shared with Linux containers. See more https://docs.docker.com/docker-for-mac/#file-sharing
 
-Once it is running there is no need to re-start it every time you run cypress. WP Cypress will restore the database to its initial state between each suite of integration tests to ensure a clean slate between tests.
+Once it is running there is no need to re-start it every time you run cypress. WP Cypress will start and restore the database to it's initial state between each suite of integration tests to ensure a clean slate between tests.
 
 You can add environment variables to the `cypress.json` configuration file. You can use this to specify the version of WordPress and which plugins/themes to install. All plugins will be activated and the first theme in the list will be activated. If this file is changed, you will need to re-run `wp-cypress start` to see the changes take effect. Composer is recommended to manage plugins and themes to if they do not exist in your project directory.
 

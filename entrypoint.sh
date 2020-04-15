@@ -1,41 +1,25 @@
 #!/bin/bash
 set -eu
-if [ -f wp-config.php ]; then
-  rm wp-config.php
+
+user="$(id -u)"
+group="$(id -g)"
+
+if [ "$(id -u)" = '0' ] && [ "$(stat -c '%u:%g' .)" = '0:0' ]; then
+  chown "$user:$group" .
 fi
 
-: ${WP_LOCALE:=${WP_LOCALE:-en_US}}
-: ${WP_ADMIN_EMAIL:=${WP_ADMIN_EMAIL:-admin@example.com}}
-: ${WP_DB_HOST:=db}
-: ${WP_DB_USER:=${MYSQL_ENV_MYSQL_USER:-root}}
-: ${WP_DB_PASSWORD:=''}
-: ${WP_DB_NAME:=${MYSQL_ENV_MYSQL_DATABASE:-wordpress}}
+sourceTarArgs=(
+  --create
+  --file -
+  --directory /usr/src/wordpress
+  --owner "$user" --group "$group"
+)
+targetTarArgs=(
+  --extract
+  --file -
+)
 
-wp core --allow-root download \
-  --version=${WP_VERSION} \
-  --force --debug
-
-c=1
-until mysqladmin ping -h"$WP_DB_HOST" --silent &> /dev/null
-do
-  c=$((c + 1))
-  if [ $c -eq 60 ]
-  then
-    break
-  fi
-  sleep 2
-done
-
-# Generate the wp-config file for debugging.
-wp core --allow-root config \
-  --dbhost="$WP_DB_HOST" \
-  --dbname="$WP_DB_NAME" \
-  --dbuser="$WP_DB_USER" \
-  --dbpass="$WP_DB_PASSWORD" \
-  --locale="$WP_LOCALE" \
-  --extra-php <<PHP
-define( 'WP_DEBUG', true );
-PHP
+tar "${sourceTarArgs[@]}" . | tar "${targetTarArgs[@]}"
 
 cat > .htaccess <<EOF
 # BEGIN WordPress
@@ -55,15 +39,15 @@ EOF
 
 chown "www-data:www-data" .htaccess
 
-# Create the database.
-wp db --allow-root create
-
-wp --allow-root core install \
-  --url=http://localhost \
-  --title="WP Cypress" \
-  --admin_user=admin \
-  --admin_password=password \
-  --admin_email="admin@test.com" \
-  --skip-email \
+c=1
+until mysqladmin ping -h"db" --silent &> /dev/null
+do
+  c=$((c + 1))
+  if [ $c -eq 60 ]
+  then
+    break
+  fi
+  sleep 2
+done
 
 exec "$@"

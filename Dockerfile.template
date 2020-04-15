@@ -13,7 +13,7 @@ RUN curl -o /bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/pha
 	&& wp --info --allow-root
 
 RUN set -ex; \
-	curl -o wordpress.tar.gz https://wordpress.org/wordpress-5.3.2.tar.gz; \
+	curl -o wordpress.tar.gz https://wordpress.org/wordpress-WP_VERSION.tar.gz; \
   tar -xzf wordpress.tar.gz -C /usr/src/; \
   rm wordpress.tar.gz; \
 	chown -R www-data:www-data /usr/src/wordpress

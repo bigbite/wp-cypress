@@ -25,6 +25,9 @@ const createConfig = (userConfig, dir) => {
     });
   }
 
+  shell.cp(`${dir}/Dockerfile.template`, `${dir}/Dockerfile`);
+  shell.sed('-i', 'WP_VERSION', userConfig.version || 'latest', `${dir}/Dockerfile`);
+
   const dockerComposeFile = shell.ShellString(`
 version: '3.7'
 services:
@@ -34,8 +37,6 @@ services:
     build: .
     ports:
       - 80:80
-    environment:
-      WP_VERSION: ${userConfig.version || 'latest'}
     volumes:
       - wp:/var/www/html ${volumes.map((x) => `
       - ${x}`).join('')}

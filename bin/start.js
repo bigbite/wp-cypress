@@ -3,9 +3,8 @@ const shell = require('shelljs');
 
 const retryCommand = require('./utils/retryCommand');
 const createConfig = require('./createConfig');
-const { exec, wpcli } = require('./utils/exec');
+const { exec, cli, wpcli } = require('./utils/exec');
 const run = require('./utils/run');
-const configureWordPress = require('./configureWordPress');
 
 const start = async (userConfig, packageDir, logFile) => {
   const configFile = fs.createWriteStream(`${packageDir}/config.json`);
@@ -18,19 +17,33 @@ const start = async (userConfig, packageDir, logFile) => {
       'docker-compose down --volumes && docker-compose build && docker-compose up -d',
       logFile,
     ),
-    'Creating Test Environment',
-    'Test Environment running on port 80',
+    'Creating test container',
+    'Test container created',
     logFile,
   );
 
   await run(
-    async () => retryCommand(() => wpcli('core is-installed', logFile), 2000, 30),
-    'Downloading & Installing WordPress',
-    'WordPress Installed',
+    async () => retryCommand(() => cli('mysqladmin ping -h"db"', logFile), 2000, 30),
+    'Waiting for database connection',
+    'Database connected',
     logFile,
   );
 
-  await configureWordPress(configFile.path, logFile);
+  await run(
+    async () => wpcli(`core config \
+    --dbhost=db \
+    --dbname=wordpress \
+    --dbuser=root \
+    --dbpass='' \
+    --locale=en_US \
+    --extra-php <<PHP
+  define( 'WP_DEBUG', true );
+PHP
+`, logFile),
+    'Creating config',
+    'Ready to start testing!',
+    logFile,
+  );
 };
 
 module.exports = start;

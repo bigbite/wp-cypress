@@ -34,6 +34,7 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # Project Specific
+Dockerfile
 docker-compose.yml
 debug.log
 config.json
