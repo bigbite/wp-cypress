@@ -29,6 +29,12 @@ const start = async (userConfig, packageDir, logFile) => {
     logFile,
   );
 
+  let debug = true;
+
+  if ('wp' in userConfig && 'debug' in userConfig.wp) {
+    debug = userConfig.wp.debug;
+  }
+
   await run(
     async () => wpcli(`core config \
     --dbhost=db \
@@ -37,7 +43,7 @@ const start = async (userConfig, packageDir, logFile) => {
     --dbpass='' \
     --locale=en_US \
     --extra-php <<PHP
-  define( 'WP_DEBUG', true );
+  define( 'WP_DEBUG', ${debug} );
 PHP
 `, logFile),
     'Creating config',
