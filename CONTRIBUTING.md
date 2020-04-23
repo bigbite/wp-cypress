@@ -24,7 +24,7 @@ To create a pull request:
 
 1. Fork the repository to your own Github account
 2. Clone the project to your machine
-3. Create a branch locally following our [branching model](https://www.notion.so/bigbite/Marketing-cfa38e86fa0f4ae19574447a975c36d2?p=15b02e825cec4dbda88243f211989347&showMoveTo=true#branching-model)
+3. Create a branch locally following our branching model
 4. Commit changes to the branch
 5. Following any formatting and testing guidelines specific to this repo
 6. Push changes to your fork
