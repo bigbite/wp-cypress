@@ -36,7 +36,7 @@ services:
       - db
     build: .
     ports:
-      - 80:80
+      - ${userConfig.port || 80}:80
     volumes:
       - wp:/var/www/html ${volumes.map((x) => `
       - ${x}`).join('')}

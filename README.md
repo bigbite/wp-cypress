@@ -114,15 +114,30 @@ This may take a while as it builds and starts a new docker container. However, y
 
 Once it is running there is no need to re-start it every time you run cypress. WP Cypress will start and restore the database to it's initial state between each suite of integration tests to ensure a clean slate between tests.
 
-You can add environment variables to the `cypress.json` configuration file. You can use this to specify the version of WordPress and which plugins/themes to install. All plugins will be activated and the first theme in the list will be activated. If this file is changed, you will need to re-run `wp-cypress start` to see the changes take effect. Composer is recommended to manage plugins and themes to if they do not exist in your project directory.
+#### Config
+
+You can add environment variables to the `wp` key in the `cypress.json` configuration file. If this file is changed, you will need to re-run `wp-cypress start` to see the changes take effect.
+
+##### Config Options
+
+Name | Type |  Description | Required?
+--- | --- | --- | ---
+version | string | The WordPress version to install | required
+plugins | array  | Absolute path's to plugins to install | optional
+themes | array | Absolute path's to themes to install | optional
+timezone | string | The default timezone of the WordPress installation | optional 
+port | number | Custom port number | optional
+
+##### Example Config
 
 ###### cypress.json
 ```json
 {
-  "baseUrl": "http://localhost",
+  "baseUrl": "http://localhost:3000",
   "pageLoadTimeout": 30000,
   "wp": {
     "version": "5.4", 
+    "port": 3000,
     "plugins": [ 
       "./"
       "./absolute/path/to/plugin"
@@ -134,8 +149,6 @@ You can add environment variables to the `cypress.json` configuration file. You 
 }
 
 ```
-
-An additional plugin will be installed that contains some of the logic that drives the functionality in this package.
 
 ### Seeds
 
@@ -205,8 +218,6 @@ Command | Description | Example
 --- | --- | ---
 editPost(id) | Visit the a post's edit page | `cy.editPost(1)`
 saveCurrentPost() | If on a post's edit page, save the psot | `cy.saveCurrentPost()`
-
-
 
 ## Seeder
 
