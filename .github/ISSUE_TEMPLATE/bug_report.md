@@ -25,9 +25,9 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
 - OS: [e.g. macOS]
-- wp- cypress version
-- cypress version
--  cypress browser [e.g. chrome, electron]
+- wp-cypress: version
+- cypress: version
+- cypress browser: [e.g. chrome, electron]
 
 **Additional context**
 Add any other context about the problem here.
