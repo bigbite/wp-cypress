@@ -1,12 +1,9 @@
-const fs = require('fs');
 const path = require('path');
 
 const { wpcli } = require('./utils/exec');
 const run = require('./utils/run');
 
-const configureWordPress = async (configFilePath, logFile) => {
-  const config = JSON.parse(fs.readFileSync(configFilePath, 'utf8'));
-
+const configureWordPress = async (config, logFile) => {
   if (config.timezone) {
     await run(
       async () => wpcli(`option update timezone_string ${config.timezone}`, logFile),
