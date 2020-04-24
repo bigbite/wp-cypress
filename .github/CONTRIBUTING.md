@@ -2,7 +2,9 @@
 
 Reading and following these guidelines will help us make the contribution process easy and effective for everyone involved. It also communicates that you agree to respect the time of the developers managing and developing these open source projects. In return, we will reciprocate that respect by addressing your issue, assessing changes, and helping you finalize your pull requests.
 
-> Search for existing issues and PRs before creating your own. We work hard to makes sure issues are handled in a timely manner but, depending on the impact, it could take a while to investigate the root cause. A friendly ping in the comment thread to the submitter or a contributor can help draw attention if your issue is blocking.
+First things first, though: we want to ensure a safe environment for all contributors; therefore, you are expected to adhere to our [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+Please make sure to search for existing issues and PRs before creating your own. We work hard to makes sure issues are handled in a timely manner but, depending on the impact, it could take a while to investigate the root cause. A friendly ping in the comment thread to the submitter or a contributor can help draw attention if your issue is blocking.
 
 ### Issues
 
