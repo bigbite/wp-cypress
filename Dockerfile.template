@@ -1,5 +1,7 @@
 FROM php:7.3-apache
 
+COPY /config/php.ini /usr/local/etc/php
+
 RUN apt-get update && apt-get install -y wget libpng-dev libjpeg-dev gnupg default-mysql-client nano less && rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-configure gd \
 	&& docker-php-ext-install gd mysqli
