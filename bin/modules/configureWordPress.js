@@ -1,7 +1,7 @@
 const path = require('path');
 
-const { wpcli } = require('./utils/exec');
-const run = require('./utils/run');
+const { wpcli } = require('../utils/exec');
+const run = require('../utils/run');
 
 const configureWordPress = async (config, logFile) => {
   if (config.timezone) {

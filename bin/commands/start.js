@@ -1,10 +1,10 @@
 const fs = require('fs');
 const shell = require('shelljs');
 
-const retryCommand = require('./utils/retryCommand');
-const createConfig = require('./createConfig');
-const { exec, cli, wpcli } = require('./utils/exec');
-const run = require('./utils/run');
+const retryCommand = require('../utils/retryCommand');
+const createConfig = require('../modules/createConfig');
+const { exec, cli, wpcli } = require('../utils/exec');
+const run = require('../utils/run');
 
 const start = async (userConfig, packageDir, logFile) => {
   const configFile = fs.createWriteStream(`${packageDir}/config.json`);

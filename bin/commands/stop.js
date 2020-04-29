@@ -1,7 +1,7 @@
 const shell = require('shelljs');
 
-const run = require('./utils/run');
-const { exec } = require('./utils/exec');
+const run = require('../utils/run');
+const { exec } = require('../utils/exec');
 
 const stop = async (packageDir, logFile) => {
   shell.cd(packageDir);

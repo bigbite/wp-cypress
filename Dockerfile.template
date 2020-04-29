@@ -13,10 +13,7 @@ RUN curl -o /bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/pha
 	&& wp --info --allow-root
 
 RUN set -ex; \
-	curl -o wordpress.tar.gz https://wordpress.org/wordpress-WP_VERSION.tar.gz; \
-  tar -xzf wordpress.tar.gz -C /usr/src/; \
-  rm wordpress.tar.gz; \
-	chown -R www-data:www-data /usr/src/wordpress
+	for version in WP_VERSIONS; do curl https://wordpress.org/wordpress-${version}.tar.gz > wordpress-${version}.tar.gz && mkdir /var/www/${version} && tar -xzf wordpress-${version}.tar.gz -C /var/www/${version} && mv /var/www/${version}/wordpress/* /var/www/${version} && rm -rf /var/www/${version}/wordpress; done
 
 COPY entrypoint.sh /entrypoint.sh
 

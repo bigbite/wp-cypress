@@ -1,11 +1,11 @@
 const fs = require('fs');
 const shell = require('shelljs');
 
-const { wpcli } = require('./utils/exec');
-const run = require('./utils/run');
-const configureWordPress = require('./configureWordPress');
+const { wpcli } = require('../utils/exec');
+const run = require('../utils/run');
+const configureWordPress = require('../modules/configureWordPress');
 
-const resetDB = async (packageDir, logFile) => {
+const reset = async (packageDir, logFile, options) => {
   const config = JSON.parse(fs.readFileSync(`${packageDir}/config.json`, 'utf8'));
   shell.cd(packageDir);
 
@@ -28,7 +28,23 @@ const resetDB = async (packageDir, logFile) => {
     logFile,
   );
 
+  if (options.version) {
+    await run(
+      async () => wpcli(`core update --version=${options.version} ../wordpress-${options.version}.zip`, logFile),
+      `Setting WP version to ${options.version}`,
+      `WP version set to ${options.version}`,
+      logFile,
+    );
+
+    await run(
+      async () => wpcli('core update-db', logFile),
+      'Updating DB',
+      'DB updated',
+      logFile,
+    );
+  }
+
   await configureWordPress(config, logFile);
 };
 
-module.exports = resetDB;
+module.exports = reset;

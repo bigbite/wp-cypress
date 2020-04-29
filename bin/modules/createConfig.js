@@ -3,6 +3,7 @@ const shell = require('shelljs');
 
 const createConfig = (userConfig, dir) => {
   const volumes = [
+    `${dir}/config/.htacess-sample:/var/www/html/.htaccess`,
     `${dir}/plugin:/var/www/html/wp-content/plugins/wp-cypress`,
     `${process.cwd()}/cypress/seeds:/var/www/html/seeds`,
   ];
@@ -26,7 +27,17 @@ const createConfig = (userConfig, dir) => {
   }
 
   shell.cp(`${dir}/Dockerfile.template`, `${dir}/Dockerfile`);
-  shell.sed('-i', 'WP_VERSION', userConfig.version || 'latest', `${dir}/Dockerfile`);
+
+  let versions = [];
+
+  // Version could be an array|string
+  if (Array.isArray(userConfig.version)) {
+    versions = [...userConfig.version];
+  } else {
+    versions.push(userConfig.version);
+  }
+
+  shell.sed('-i', 'WP_VERSIONS', versions.join(' '), `${dir}/Dockerfile`);
 
   const dockerComposeFile = shell.ShellString(`
 version: '3.7'

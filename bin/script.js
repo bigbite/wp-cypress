@@ -12,10 +12,10 @@ const packageDir = `${process.cwd()}/node_modules/${name}`;
 const logFile = fs.createWriteStream(`${packageDir}/debug.log`);
 
 // Commands
-const start = require('./start');
-const stop = require('./stop');
-const resetDB = require('./resetDB');
-const wp = require('./wp');
+const start = require('./commands/start');
+const stop = require('./commands/stop');
+const reset = require('./commands/reset');
+const wp = require('./commands/wp');
 
 program
   .version(version)
@@ -32,9 +32,10 @@ program
   .action(() => stop(packageDir, logFile));
 
 program
-  .command('resetDB')
-  .description('Restore the database to it\'s initial state')
-  .action(() => resetDB(packageDir, logFile));
+  .command('reset')
+  .description('Reset the installation to it\'s initial state')
+  .option('-v,--version <version>')
+  .action((options) => reset(packageDir, logFile, options));
 
 program
   .command('wp <command>')
