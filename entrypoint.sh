@@ -2,6 +2,7 @@
 set -eu
 
 chown "www-data:www-data" .htaccess
+chown "www-data:www-data" wp-content
 
 c=1
 until mysqladmin ping -h"db" --silent &> /dev/null
