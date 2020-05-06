@@ -38,9 +38,9 @@ const configureWordPress = async (config, logFile) => {
   if (config.themes.length > 0) {
     const themeName = path.basename(config.themes[0]);
     await run(
-      async () => wpcli(`plugin activate ${themeName}`, logFile),
-      `Activating ${themeName} plugin`,
-      `${themeName} plugin activated`,
+      async () => wpcli(`theme activate ${themeName}`, logFile),
+      `Activating ${themeName} theme`,
+      `${themeName} theme activated`,
       logFile,
     );
   }
