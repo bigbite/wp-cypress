@@ -3,10 +3,12 @@ const shell = require('shelljs');
 
 const createConfig = (userConfig, dir) => {
   const volumes = [
-    `${dir}/config/.htacess-sample:/var/www/html/.htaccess`,
+    `${dir}/config/php.ini:/usr/local/etc/php/php.ini`,
+    `${dir}/config/.htaccess:/var/www/html/.htaccess`,
     `${dir}/plugin:/var/www/html/wp-content/plugins/wp-cypress`,
     `${process.cwd()}/cypress/seeds:/var/www/html/seeds`,
   ];
+
   const plugins = [];
   const themes = [];
 
@@ -55,6 +57,7 @@ services:
     image: mariadb
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: 'wordpress'
     volumes:
       - db:/var/lib/mysql
 volumes:

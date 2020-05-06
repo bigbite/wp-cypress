@@ -1,13 +1,38 @@
 const fs = require('fs');
 const shell = require('shelljs');
 
-const { wpcli } = require('../utils/exec');
+const { wpcli, cli } = require('../utils/exec');
 const run = require('../utils/run');
 const configureWordPress = require('../modules/configureWordPress');
 
 const reset = async (packageDir, logFile, options) => {
   const config = JSON.parse(fs.readFileSync(`${packageDir}/config.json`, 'utf8'));
   shell.cd(packageDir);
+
+  const version = options || config.version[0];
+
+  console.log('options', options);
+  console.log('config', config);
+  console.log('VER', version);
+
+  await cli(`bash update.sh ${options.version}`, logFile);
+
+  await run(
+    async () => wpcli(`core config \
+    --dbhost=db \
+    --dbname=wordpress \
+    --dbuser=root \
+    --dbpass='' \
+    --locale=en_US \
+    --extra-php <<PHP
+  define('FS_METHOD', 'direct');
+  define( 'WP_DEBUG', false );
+PHP
+`, logFile),
+    'Creating config',
+    'Ready to start testing!',
+    logFile,
+  );
 
   await run(
     async () => wpcli('db reset --yes', logFile),
@@ -27,22 +52,6 @@ const reset = async (packageDir, logFile, options) => {
     'WordPress re-installed',
     logFile,
   );
-
-  if (options.version) {
-    await run(
-      async () => wpcli(`core update --version=${options.version} ../wordpress-${options.version}.zip`, logFile),
-      `Setting WP version to ${options.version}`,
-      `WP version set to ${options.version}`,
-      logFile,
-    );
-
-    await run(
-      async () => wpcli('core update-db', logFile),
-      'Updating DB',
-      'DB updated',
-      logFile,
-    );
-  }
 
   await configureWordPress(config, logFile);
 };
