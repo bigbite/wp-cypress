@@ -8,7 +8,6 @@ RUN a2enmod rewrite
 
 VOLUME /var/www/html
 
-COPY /welcome/index.html /var/www/html
 COPY update.sh /var/www/html
 
 RUN curl -o /bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \

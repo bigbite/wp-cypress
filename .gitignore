@@ -38,3 +38,5 @@ Dockerfile
 docker-compose.yml
 debug.log
 config.json
+lib/cypress-plugin/tmp
+lib/cypress-plugin/settings.json

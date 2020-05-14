@@ -17,8 +17,10 @@ if ( ! defined( 'WP_CYPRESS_PLUGIN' ) ) {
 require_once WP_CYPRESS_PLUGIN . '/vendor/autoload.php';
 require_once WP_CYPRESS_PLUGIN . '/inc/auth.php';
 require_once WP_CYPRESS_PLUGIN . '/inc/disable-tooltips.php';
+require_once WP_CYPRESS_PLUGIN . '/inc/debug.php';
 require_once WP_CYPRESS_PLUGIN . '/Seeder/bootstrap.php';
 
 disable_auth();
 disable_tooltips();
+add_debug();
 
