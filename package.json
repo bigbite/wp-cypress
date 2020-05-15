@@ -39,6 +39,8 @@
     "commander": "^5.0.0",
     "core-js": "^3.6.5",
     "cypress-plugin-retries": "^1.5.2",
+    "escodegen": "^1.14.1",
+    "esprima": "^4.0.1",
     "glob": "^7.1.6",
     "node-fetch": "^2.6.0",
     "ora": "^4.0.3",
