@@ -1,6 +1,9 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/logo/cypress-io-logo-round.png">
-    <img src="https://s.w.org/style/images/about/WordPress-logotype-simplified.png" />
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <img style="width: 123px; margin-right: 10px;" src="https://s.w.org/style/images/about/WordPress-logotype-simplified.png" />
+      <span style="font-size: 50px; color: lightgrey'">+</span>
+      <img style="width: 150px;" src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/logo/cypress-io-logo-round.png" />
+    </div>
     <h1>WP Cypress</h1>
     <a href="https://www.npmjs.com/package/@bigbite/wp-cypress"><img src="https://img.shields.io/npm/v/@bigbite/wp-cypress.svg"></a>
     <a href="https://github.com/bigbite/wp-cypress/blob/master/LICENSE"><img src="https://img.shields.io/github/license/bigbite/wp-cypress.svg"></a>
