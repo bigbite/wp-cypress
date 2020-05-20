@@ -1,0 +1,3 @@
+{
+  "ignorePatterns": ["lib/cypress-plugin/tmp/**/*.js"],
+}
