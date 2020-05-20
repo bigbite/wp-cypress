@@ -1,7 +1,7 @@
 <div align="center">
     <div style="display: flex; align-items: center; justify-content: center;">
       <img style="width: 123px; margin-right: 10px;" src="https://s.w.org/style/images/about/WordPress-logotype-simplified.png" />
-      <span style="font-size: 50px; color: lightgrey'">+</span>
+      <span style="font-size: 50px; color: lightgrey;">+</span>
       <img style="width: 150px;" src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/logo/cypress-io-logo-round.png" />
     </div>
     <h1>WP Cypress</h1>
