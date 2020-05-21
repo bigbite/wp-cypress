@@ -34,7 +34,9 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # Project Specific
+plugin/vendor
 Dockerfile
 docker-compose.yml
 debug.log
 config.json
+lib/cypress-plugin/tmp

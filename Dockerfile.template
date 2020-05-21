@@ -1,7 +1,5 @@
 FROM php:7.3-apache
 
-COPY /config/php.ini /usr/local/etc/php
-
 RUN apt-get update && apt-get install -y wget libpng-dev libjpeg-dev gnupg default-mysql-client nano less && rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-configure gd \
 	&& docker-php-ext-install gd mysqli
@@ -10,21 +8,14 @@ RUN a2enmod rewrite
 
 VOLUME /var/www/html
 
+COPY update.sh /var/www/html
+
 RUN curl -o /bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x /bin/wp \
 	&& wp --info --allow-root
 
 RUN set -ex; \
-	curl -o wordpress.tar.gz https://wordpress.org/wordpress-WP_VERSION.tar.gz; \
-  tar -xzf wordpress.tar.gz -C /usr/src/; \
-  rm wordpress.tar.gz; \
-	chown -R www-data:www-data /usr/src/wordpress
-
-COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+	for version in WP_VERSIONS; do curl https://wordpress.org/wordpress-${version}.tar.gz > wordpress-${version}.tar.gz && mkdir -p /var/www/${version} && tar -xzf wordpress-${version}.tar.gz -C /var/www/${version} && mv /var/www/${version}/wordpress/* /var/www/${version} && rm -rf /var/www/${version}/wordpress && chown -R www-data:www-data /var/www/${version}; done
 
 EXPOSE 80
 

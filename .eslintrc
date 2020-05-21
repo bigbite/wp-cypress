@@ -1,6 +1,7 @@
 {
   "extends": ["airbnb-base"],
   "plugins": ["cypress"],
+  "ignorePatterns": ["lib/cypress-plugin/tmp/*"],
   "env": {
     "browser": true,
     "node": true,

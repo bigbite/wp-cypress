@@ -1,8 +1,7 @@
 {
   "name": "@bigbite/wp-cypress",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "description": "WordPress end to end testing with Cypress.io",
-  "main": "lib/index.js",
   "repository": "https://github.com/bigbite/wp-cypress",
   "author": {
     "name": "Big Bite",
@@ -25,6 +24,9 @@
       "pre-push": "yarn run lint:scripts"
     }
   },
+  "peerDepencies": {
+    "cypress": "^4.4.1"
+  },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
@@ -35,7 +37,12 @@
   },
   "dependencies": {
     "commander": "^5.0.0",
+    "core-js": "^3.6.5",
     "cypress-plugin-retries": "^1.5.2",
+    "escodegen": "^1.14.1",
+    "esprima": "^4.0.1",
+    "glob": "^7.1.6",
+    "node-fetch": "^2.6.0",
     "ora": "^4.0.3",
     "shelljs": "^0.8.3",
     "unfetch": "^4.1.0"
