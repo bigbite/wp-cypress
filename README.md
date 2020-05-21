@@ -14,8 +14,8 @@ Cypress is designed to address the pain points of testing modern web application
 - Automate tests across multiple WordPress versions.
 - Test individual plugins, themes or a combination of multiple themes and plugins.
 - Seed your database with test data using `WP_Cypress\Seeder`.
-- Teardown of database between blocks of tests.
-- WordPress specific cypress commands.
+- Teardown between blocks of tests.
+- Additional custom cypress commands.
 
 ## Documentation
 
