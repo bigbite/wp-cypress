@@ -2,6 +2,7 @@
 
 namespace WP_Cypress\Seeder;
 
+use Exception;
 use Faker\Factory;
 use WP_CLI;
 use WP_Cypress\Seeder\Traits\Date;
