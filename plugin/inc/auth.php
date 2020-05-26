@@ -1,7 +1,7 @@
 <?php
 
 function disable_auth() {
-	add_action( 'init', function() {
+	add_action( 'init', function () {
 		if ( is_user_logged_in() ) {
 			return;
 		}
