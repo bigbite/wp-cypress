@@ -1,11 +1,11 @@
 <?php
 
 class Validation {
-	public static function validate_plugins( array $plugins ) {
+	public static function validate_plugins( array $plugins ): array {
 		$installed_plugins = get_plugins();
 
-		$validated_plugins = array_map( function ( $plugin ) use ( $installed_plugins ) {
-			$validation = array_merge([
+		$validated_plugins = array_map( function ( $plugin ) use ( $installed_plugins ): array {
+			$validation = array_merge( [
 				'valid'   => false,
 				'message' => 'Invalid plugin',
 			], (array) $plugin );
@@ -47,7 +47,7 @@ class Validation {
 		return $validated_plugins;
 	}
 
-	public static function validate_theme( string $theme ) {
+	public static function validate_theme( string $theme ): array {
 		$validation = [
 			'valid'   => false,
 			'message' => 'Invalid Theme',
@@ -72,7 +72,7 @@ class Validation {
 		return $validation;
 	}
 
-	public static function active_theme_name() {
+	public static function active_theme_name(): string {
 		$theme = wp_get_theme();
 		return $theme->name;
 	}

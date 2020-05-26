@@ -3,7 +3,7 @@
 namespace WP_Cypress\Seeder\Seeds;
 
 class Comment extends Seed {
-	public function defaults() {
+	public function defaults(): array {
 		return [
 			'comment_post_ID'      => 1,
 			'comment_author'       => 'admin',
@@ -14,7 +14,7 @@ class Comment extends Seed {
 		];
 	}
 
-	public function generate() {
+	public function generate(): int {
 		$id = (int) wp_insert_comment( array_merge( $this->defaults(), $this->properties ) );
 
 		if ( $id && isset( $this->properties['comment_meta'] ) && is_array( $this->properties['comment_meta'] ) ) {

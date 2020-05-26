@@ -3,7 +3,7 @@
 namespace WP_Cypress\Seeder\Seeds;
 
 class Post extends Seed {
-	public function defaults() {
+	public function defaults(): array {
 		$title    = $this->faker->sentence();
 		$slug     = sanitize_title( $title );
 		$now      = $this->now();
@@ -33,7 +33,7 @@ class Post extends Seed {
 		return $defaults;
 	}
 
-	public function generate() {
+	public function generate() : int{
 		$this->properties = array_merge( $this->defaults(), $this->properties );
 
 		$post_id = wp_insert_post( $this->properties );
