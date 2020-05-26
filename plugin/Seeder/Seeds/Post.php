@@ -35,25 +35,29 @@ class Post extends Seed {
 
 	public function generate() {
 		$this->properties = array_merge( $this->defaults(), $this->properties );
-		$post             = wp_insert_post( $this->properties );
 
-		$this->add_meta( $post );
-		$this->add_thumbnail( $post );
+		$post_id = wp_insert_post( $this->properties );
+		if ( is_wp_error( $post_id ) ) {
+			return 0;
+		}
 
-		return $post;
+		$this->add_meta( $post_id );
+		$this->add_thumbnail( $post_id );
+
+		return $post_id;
 	}
 
-	public function add_meta( $post ) {
+	public function add_meta( int $post_id ) {
 		if ( ! isset( $this->properties['post_meta'] ) || ! is_array( $this->properties['post_meta'] ) ) {
 			return;
 		}
 
 		foreach ( $this->properties['post_meta'] as $key => $value ) {
-			add_post_meta( $post, $key, $value );
+			add_post_meta( $post_id, $key, $value );
 		}
 	}
 
-	public function add_thumbnail( $post ) {
+	public function add_thumbnail( int $post_id ) {
 		if ( ! isset( $this->properties['post_thumbnail'] ) ) {
 			return;
 		}
@@ -65,13 +69,13 @@ class Post extends Seed {
 		];
 
 		if ( ! is_wp_error( $attributes['tmp_name'] ) ) {
-			$media = media_handle_sideload( $attributes, $post );
+			$media = media_handle_sideload( $attributes, $post_id );
 
 			if ( is_wp_error( $media ) ) {
 				return;
 			}
 
-			set_post_thumbnail( $post, $media );
+			set_post_thumbnail( $post_id, $media );
 		}
 	}
 }

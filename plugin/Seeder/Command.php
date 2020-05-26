@@ -21,7 +21,7 @@ class Command {
 		}
 	}
 
-	public function seed( $seed_name ) {
+	public function seed( string $seed_name ) {
 		$seeds_full_path = getcwd() . '/seeds/' . $seed_name . '.php';
 
 		if ( ! file_exists( $seeds_full_path ) ) {

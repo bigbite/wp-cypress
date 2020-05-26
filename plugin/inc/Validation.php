@@ -1,7 +1,7 @@
 <?php
 
 class Validation {
-	public static function validate_plugins( $plugins ) {
+	public static function validate_plugins( array $plugins ) {
 		$installed_plugins = get_plugins();
 
 		$validated_plugins = array_map( function ( $plugin ) use ( $installed_plugins ) {
@@ -40,14 +40,14 @@ class Validation {
 			return $validation;
 		}, $plugins );
 
-		usort ( $validated_plugins, function ( $left, $right ) {
+		usort ( $validated_plugins, function ( array $left, array $right ) {
 			return $left['valid'] - $right['valid'];
 		});
 
 		return $validated_plugins;
 	}
 
-	public static function validate_theme( $theme ) {
+	public static function validate_theme( string $theme ) {
 		$validation = [
 			'valid'   => false,
 			'message' => 'Invalid Theme',

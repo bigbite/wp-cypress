@@ -10,10 +10,11 @@ abstract class Seed implements SeedInterface {
 
 	protected $faker;
 
-	protected $properties = [];
+	protected $properties;
 
-	public function __construct( $properties ) {
-		$this->faker      = Factory::create();
+	public function __construct( array $properties = [] ) {
 		$this->properties = $properties;
+
+		$this->faker = Factory::create();
 	}
 }
