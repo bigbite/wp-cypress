@@ -54,13 +54,12 @@ class Validation {
 		];
 
 		$existing_themes = wp_get_themes( array( 'errors' => null ) );
-		$theme           = $existing_themes[ $theme ];
 
-		if ( ! isset( $theme ) ) {
+		if ( ! isset( $existing_themes[ $theme ] ) ) {
 			return $validation;
 		}
 
-		$errors = $theme->errors();
+		$errors = $existing_themes[ $theme ]->errors();
 
 		if ( is_wp_error( $errors ) ) {
 			$validation['message'] = $errors->get_error_message();
