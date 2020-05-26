@@ -2,6 +2,7 @@
 
 namespace WP_Cypress\Seeder;
 
+use Exception;
 use WP_CLI;
 
 class Command {
@@ -31,7 +32,15 @@ class Command {
 		include_once $seeds_full_path;
 
 		$start_time = microtime( true );
-		new $seed_name();
+
+		try {
+			/** @var SeederInterface $seeder */
+			$seeder = new $seed_name();
+			$seeder->run();
+		} catch ( Exception $e ) {
+			WP_CLI::error( $e->getMessage() );
+		}
+
 		$run_time = round( microtime( true ) - $start_time, 2 );
 
 		WP_CLI::success( 'Seeded ' . $seed_name . ' in ' . $run_time . ' seconds' );
