@@ -53,7 +53,7 @@ class Validation {
 			'message' => 'Invalid Theme',
 		];
 
-		$existing_themes = wp_get_themes( array( 'errors' => null ) );
+		$existing_themes = wp_get_themes( [ 'errors' => null ] );
 
 		if ( ! isset( $existing_themes[ $theme ] ) ) {
 			return $validation;
