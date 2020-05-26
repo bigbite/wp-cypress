@@ -15,9 +15,9 @@ class Comment extends Seed {
 	}
 
 	public function generate() {
-		$id = wp_insert_comment( array_merge( $this->defaults(), $this->properties ) );
+		$id = (int) wp_insert_comment( array_merge( $this->defaults(), $this->properties ) );
 
-		if ( isset( $this->properties['comment_meta'] ) && is_array( $this->properties['comment_meta'] ) ) {
+		if ( $id && isset( $this->properties['comment_meta'] ) && is_array( $this->properties['comment_meta'] ) ) {
 			foreach ( $this->properties['comment_meta'] as $key => $value ) {
 				add_comment_meta( $id, $key, $value );
 			}
