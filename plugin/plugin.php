@@ -23,4 +23,3 @@ require_once WP_CYPRESS_PLUGIN . '/Seeder/bootstrap.php';
 disable_auth();
 disable_tooltips();
 add_debug();
-
