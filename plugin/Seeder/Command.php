@@ -28,7 +28,7 @@ class Command {
 			);
 		}
 
-		require_once $seeds_full_path;
+		include_once $seeds_full_path;
 
 		$start_time = microtime( true );
 		new $seed_name();

@@ -6,7 +6,7 @@ function add_debug() {
 
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		require_once WP_CYPRESS_PLUGIN . '/inc/Validation.php';
-		include_once WP_CYPRESS_PLUGIN . '/templates/debug/index.php';
+		require_once WP_CYPRESS_PLUGIN . '/templates/debug/index.php';
 
 		die();
 	}

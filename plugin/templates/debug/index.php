@@ -1,7 +1,7 @@
-<?php require_once 'partials/header.php'; ?>
+<?php require 'partials/header.php'; ?>
 
 <body>
-	<?php require_once 'partials/hero.php'; ?>
+	<?php require 'partials/hero.php'; ?>
 
 	<main class="container" style="padding: 60px 0;">
 		<div class="box">
@@ -150,4 +150,4 @@
 		</div>
 	</main>
 
-<?php require_once 'partials/footer.php'; ?>
+<?php require 'partials/footer.php'; ?>
