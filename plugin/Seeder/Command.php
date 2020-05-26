@@ -8,10 +8,8 @@ class Command {
 	const SEEDS_DIR = 'seeds';
 
 	public function __invoke( $args ) {
-		$seed_name = $args[0];
-
-		if ( $seed_name ) {
-			$this->seed( $seed_name );
+		if ( ! empty( $args[0] ) ) {
+			$this->seed( $args[0] );
 			return;
 		}
 
