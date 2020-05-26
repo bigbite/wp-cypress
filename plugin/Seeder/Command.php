@@ -2,15 +2,13 @@
 
 namespace WP_Cypress\Seeder;
 
-use WP_CLI\ExitException;
-use WP_CLI\Utils\get_flag_value;
+use WP_CLI;
 
 class Command {
 	const SEEDS_DIR = 'seeds';
 
 	public function __invoke( $args ) {
 		$seed_name = $args[0];
-
 
 		if ( $seed_name ) {
 			$this->seed( $seed_name );
@@ -27,7 +25,7 @@ class Command {
 		$seeds_full_path = getcwd() . '/seeds/' . $seed_name . '.php';
 
 		if ( ! file_exists( $seeds_full_path ) ) {
-			\WP_CLI::error(
+			WP_CLI::error(
 				sprintf( 'There is no "%s" class.', $seed_name )
 			);
 		}
@@ -38,6 +36,6 @@ class Command {
 		new $seed_name();
 		$run_time = round( microtime( true ) - $start_time, 2 );
 
-		\WP_CLI::success( 'Seeded ' . $seed_name . ' in ' . $run_time . ' seconds' );
+		WP_CLI::success( 'Seeded ' . $seed_name . ' in ' . $run_time . ' seconds' );
 	}
 }

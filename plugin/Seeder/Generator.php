@@ -2,12 +2,14 @@
 
 namespace WP_Cypress\Seeder;
 
-use WP_Cypress\Seeder\Seeds\Post;
 use WP_Cypress\Seeder\Seeds\Comment;
+use WP_Cypress\Seeder\Seeds\Post;
+
+use function WP_CLI\Utils\make_progress_bar;
 
 class Generator {
 	public function posts( $properties = [], $count = 1 ) {
-		$progress = \WP_CLI\Utils\make_progress_bar( 'Generating posts', $count );
+		$progress = make_progress_bar( 'Generating posts', $count );
 
 		$post = new Post( $properties );
 
@@ -20,7 +22,7 @@ class Generator {
 	}
 
 	public function comments( $properties = [], $count = 1 ) {
-		$progress = \WP_CLI\Utils\make_progress_bar( 'Generating comments', $count );
+		$progress = make_progress_bar( 'Generating comments', $count );
 
 		$comment = new Comment( $properties );
 

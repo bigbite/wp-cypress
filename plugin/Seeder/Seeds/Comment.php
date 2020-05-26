@@ -2,8 +2,6 @@
 
 namespace WP_Cypress\Seeder\Seeds;
 
-use WP_Cypress\Seeder\Seeds\Seed;
-
 class Comment extends Seed {
 	public function defaults() {
 		return [
