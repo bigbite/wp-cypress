@@ -22,7 +22,7 @@ class Command {
 	public function seed( string $seed_name ) {
 		$seeds_full_path = getcwd() . '/seeds/' . $seed_name . '.php';
 
-		if ( ! file_exists( $seeds_full_path ) ) {
+		if ( ! is_readable( $seeds_full_path ) ) {
 			WP_CLI::error(
 				sprintf( 'There is no "%s" class.', $seed_name )
 			);
