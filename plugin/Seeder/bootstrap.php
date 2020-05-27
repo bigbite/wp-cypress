@@ -1,6 +1,5 @@
 <?php
 
-use WP_CLI;
 use WP_Cypress\Seeder\Command;
 
 if ( ! defined( 'ABSPATH' ) ) {
