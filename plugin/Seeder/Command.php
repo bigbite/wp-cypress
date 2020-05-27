@@ -2,8 +2,8 @@
 
 namespace WP_Cypress\Seeder;
 
-use WP_CLI;
 use Exception;
+use WP_CLI;
 
 class Command {
 	const SEEDS_DIR = 'seeds';
