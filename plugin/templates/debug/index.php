@@ -30,7 +30,7 @@
 				<p class="subtitle">Add plugins to the <code>cypress.json</code> configuration.</p>
 			<?php } else { ?>
 
-				<?php $validated_plugins = Validation::validate_plugins( $config->plugins ); ?>
+				<?php $validated_plugins = WP_Cypress\validate_plugins( $config->plugins ); ?>
 
 				<table class="table is-striped is-fullwidth">
 					<thead>
@@ -71,7 +71,7 @@
 
 				<div class="tags has-addons">
 					<span class="tag is-info">Active Theme</span>
-					<span class="tag is-info is-light"><?php echo esc_html( Validation::active_theme_name() ); ?></span>
+					<span class="tag is-info is-light"><?php echo esc_html( WP_Cypress\active_theme_name() ); ?></span>
 				</div>
 			</div>
 
@@ -91,7 +91,7 @@
 						<tr>
 							<td style="width: 25%;"><?php echo esc_html( $theme->name ); ?></td>
 							<td style="width: 25%;">
-						<?php $theme_validation = Validation::validate_theme( $theme->name ); ?>
+						<?php $theme_validation = WP_Cypress\validate_theme( $theme->name ); ?>
 						<?php if ( $theme_validation['valid'] ) { ?>
 							<span class="icon has-text-success">
 								<i class="fas fa-check-square"></i>
