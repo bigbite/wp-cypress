@@ -2,7 +2,7 @@
 
 namespace WP_Cypress\Seeder\Seeds;
 
-use WP_Cypress\Seeder\Utils\now;
+use WP_Cypress\Seeder\Utils;
 
 class Comment extends Seed {
 	public function defaults(): array {
@@ -12,7 +12,7 @@ class Comment extends Seed {
 			'comment_author_email' => 'admin@test.com',
 			'comment_content'      => $this->faker->realText( 100 ),
 			'user_id'              => 1,
-			'comment_date'         => now(),
+			'comment_date'         => Utils\now(),
 		];
 	}
 

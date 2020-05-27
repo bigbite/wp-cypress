@@ -2,6 +2,7 @@
 
 namespace WP_Cypress\Seeder;
 
+use WP_CLI;
 use Exception;
 
 class Command {
@@ -20,7 +21,7 @@ class Command {
 	}
 
 	public function seed( string $seed_name ) {
-		$seeds_full_path = getcwd() . '/' . self::SEEDS_DIR . ' /' . $seed_name . '.php';
+		$seeds_full_path = getcwd() . '/' . self::SEEDS_DIR . '/' . $seed_name . '.php';
 
 		if ( ! is_readable( $seeds_full_path ) ) {
 			WP_CLI::error(
