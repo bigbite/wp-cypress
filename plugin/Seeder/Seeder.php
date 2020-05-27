@@ -4,11 +4,8 @@ namespace WP_Cypress\Seeder;
 
 use Faker\Factory;
 use Faker\Generator as Faker;
-use WP_Cypress\Seeder\Traits\Date;
 
 abstract class Seeder implements SeederInterface {
-	use Date;
-
 	/**
 	 * @var Faker
 	 */

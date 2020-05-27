@@ -10,8 +10,8 @@ if ( ! class_exists( 'WP_CLI' ) ) {
 	return;
 }
 
+require_once __DIR__ . '/utils.php';
 require_once __DIR__ . '/Seeds/SeedInterface.php';
-require_once __DIR__ . '/Traits/Date.php';
 require_once __DIR__ . '/Seeds/Seed.php';
 require_once __DIR__ . '/Seeds/Post.php';
 require_once __DIR__ . '/Seeds/Comment.php';

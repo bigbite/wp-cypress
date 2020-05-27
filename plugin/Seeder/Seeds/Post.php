@@ -2,11 +2,13 @@
 
 namespace WP_Cypress\Seeder\Seeds;
 
+use WP_Cypress\Seeder\Utils\now;
+
 class Post extends Seed {
 	public function defaults(): array {
 		$title    = $this->faker->sentence();
 		$slug     = sanitize_title( $title );
-		$now      = $this->now();
+		$now      = now();
 		$defaults = [
 			'post_author'       => 1,
 			'post_type'         => 'post',
