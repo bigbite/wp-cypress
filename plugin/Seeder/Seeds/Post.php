@@ -33,7 +33,7 @@ class Post extends Seed {
 		return $defaults;
 	}
 
-	public function generate() : int{
+	public function generate() : int {
 		$this->properties = array_merge( $this->defaults(), $this->properties );
 
 		$post_id = wp_insert_post( $this->properties );
