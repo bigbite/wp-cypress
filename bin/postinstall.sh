@@ -18,12 +18,12 @@ if [ ! -d ./seeds ]; then
   cat > Init.php <<EOF
 <?php
 
-use \WP_Cypress\Seeder\Seeder;
+use WP_Cypress\Seeder\Seeder;
 
 class Init extends Seeder {
 	public function run() {
 		\$title = \$this->faker->sentence();
-		\$this->generate->posts( [ 'post_title' => \$title ], 1 );
+		\$this->generate->posts( [ 'post_title' => \$title ] );
 	}
 }
 

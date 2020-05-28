@@ -2,25 +2,23 @@
 
 namespace WP_Cypress\Seeder;
 
-use \WP_Cypress\Seeder\SeederInterface;
-use \WP_Cypress\Seeder\Generator;
-use \WP_Cypress\Seeder\Traits\Date;
+use Faker\Factory;
+use Faker\Generator as Faker;
 
 abstract class Seeder implements SeederInterface {
-	use Date;
-
-	protected $generate;
-
+	/**
+	 * @var Faker
+	 */
 	protected $faker;
 
-	public function __construct() {
-		$this->faker    = \Faker\Factory::create();
-		$this->generate = new Generator();
+	/**
+	 * @var Generator
+	 */
+	protected $generate;
 
-		try {
-			$this->run();
-		} catch ( Exception $e ) {
-			\WP_CLI::error( $e->getMessage() );
-		}
+	public function __construct( Generator $generate = null, Faker $faker = null ) {
+		$this->generate = $generate ?? new Generator();
+
+		$this->faker = $faker ?? Factory::create();
 	}
 }

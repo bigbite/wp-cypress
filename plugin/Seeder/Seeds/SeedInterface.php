@@ -3,7 +3,7 @@
 namespace WP_Cypress\Seeder\Seeds;
 
 interface SeedInterface {
-	public function defaults();
+	public function defaults(): array;
 
-	public function generate();
+	public function generate(): int;
 }

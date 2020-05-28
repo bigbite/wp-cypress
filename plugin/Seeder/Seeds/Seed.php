@@ -2,18 +2,23 @@
 
 namespace WP_Cypress\Seeder\Seeds;
 
-use \WP_Cypress\Seeder\Seeds\SeedInterface;
-use \WP_Cypress\Seeder\Traits\Date;
+use Faker\Factory;
+use Faker\Generator as Faker;
 
 abstract class Seed implements SeedInterface {
-	use Date;
-
+	/**
+	 * @var Faker
+	 */
 	protected $faker;
 
-	protected $properties = [];
+	/**
+	 * @var array
+	 */
+	protected $properties;
 
-	public function __construct( $properties ) {
-		$this->faker      = \Faker\Factory::create();
+	public function __construct( array $properties = [], Faker $faker = null ) {
 		$this->properties = $properties;
+
+		$this->faker = $faker ?? Factory::create();
 	}
 }
