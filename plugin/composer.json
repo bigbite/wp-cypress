@@ -1,5 +1,14 @@
 {
+  "name": "bigbite/wp-cypress",
+  "description": "Modifications for a test environment with Cypress.",
+  "type": "wordpress-plugin",
+  "license": "MIT",
   "require": {
     "fzaninotto/faker": "^1.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "WP_Cypress\\Seeder\\": "Seeder/"
+    }
   }
 }
