@@ -10,14 +10,20 @@
 
 namespace WP_Cypress;
 
+use WP_Cypress\Seeder\Command;
+
 if ( ! defined( 'WP_CYPRESS_PLUGIN' ) ) {
 	define( 'WP_CYPRESS_PLUGIN', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 }
 
-require_once WP_CYPRESS_PLUGIN . '/vendor/autoload.php';
+if ( ! class_exists( Command::class ) && is_readable( WP_CYPRESS_PLUGIN . '/vendor/autoload.php' ) ) {
+	include WP_CYPRESS_PLUGIN . '/vendor/autoload.php';
+}
+
 require_once WP_CYPRESS_PLUGIN . '/inc/auth.php';
-require_once WP_CYPRESS_PLUGIN . '/inc/disable-tooltips.php';
 require_once WP_CYPRESS_PLUGIN . '/inc/debug.php';
+require_once WP_CYPRESS_PLUGIN . '/inc/disable-tooltips.php';
+
 require_once WP_CYPRESS_PLUGIN . '/Seeder/bootstrap.php';
 
 disable_auth();
