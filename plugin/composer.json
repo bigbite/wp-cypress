@@ -8,7 +8,7 @@
   },
   "autoload": {
     "psr-4": {
-      "WP_Cypress\\Seeder\\": "Seeder/"
+      "WP_Cypress\\": "src/"
     }
   }
 }

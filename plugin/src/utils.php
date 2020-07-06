@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Cypress\Seeder\Utils;
+namespace WP_Cypress\Utils;
 
 /**
  * Return the current time, based on the timezone set in WordPress.

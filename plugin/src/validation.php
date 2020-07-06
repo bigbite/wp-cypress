@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Cypress;
+namespace WP_Cypress\Validation;
 
 /**
  * Validate an array of plugins.

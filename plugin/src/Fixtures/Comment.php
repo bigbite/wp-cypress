@@ -1,10 +1,15 @@
 <?php
 
-namespace WP_Cypress\Seeder\Seeds;
+namespace WP_Cypress\Fixtures;
 
-use WP_Cypress\Seeder\Utils;
+use WP_Cypress\Utils;
 
-class Comment extends Seed {
+class Comment extends Fixture {
+	/**
+	 * Gets default values of the comment.
+	 *
+	 * @return array
+	 */
 	public function defaults(): array {
 		return [
 			'comment_post_ID'      => 1,
@@ -16,7 +21,12 @@ class Comment extends Seed {
 		];
 	}
 
-	public function generate(): int {
+	/**
+	 * Generates a comment record.
+	 *
+	 * @return void
+	 */
+	public function generate(): void {
 		$id = (int) wp_insert_comment( array_merge( $this->defaults(), $this->properties ) );
 
 		if ( $id && isset( $this->properties['comment_meta'] ) && is_array( $this->properties['comment_meta'] ) ) {
@@ -24,7 +34,5 @@ class Comment extends Seed {
 				add_comment_meta( $id, $key, $value );
 			}
 		}
-
-		return $id;
 	}
 }
