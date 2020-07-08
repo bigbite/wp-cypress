@@ -1,7 +1,13 @@
-<?php require_once 'partials/header.php'; ?>
+<?php
+
+use WP_Cypress\Validation;
+
+require 'partials/header.php';
+
+?>
 
 <body>
-	<?php require_once 'partials/hero.php'; ?>
+	<?php require 'partials/hero.php'; ?>
 
 	<main class="container" style="padding: 60px 0;">
 		<div class="box">
@@ -30,7 +36,7 @@
 				<p class="subtitle">Add plugins to the <code>cypress.json</code> configuration.</p>
 			<?php } else { ?>
 
-				<?php $validated_plugins = Validation::validate_plugins( $config->plugins ); ?>
+				<?php $validated_plugins = Validation\validate_plugins( $config->plugins ); ?>
 
 				<table class="table is-striped is-fullwidth">
 					<thead>
@@ -71,7 +77,7 @@
 
 				<div class="tags has-addons">
 					<span class="tag is-info">Active Theme</span>
-					<span class="tag is-info is-light"><?php echo esc_html( Validation::active_theme_name() ); ?></span>
+					<span class="tag is-info is-light"><?php echo esc_html( Validation\active_theme_name() ); ?></span>
 				</div>
 			</div>
 
@@ -91,7 +97,7 @@
 						<tr>
 							<td style="width: 25%;"><?php echo esc_html( $theme->name ); ?></td>
 							<td style="width: 25%;">
-						<?php $theme_validation = Validation::validate_theme( $theme->name ); ?>
+						<?php $theme_validation = Validation\validate_theme( $theme->name ); ?>
 						<?php if ( $theme_validation['valid'] ) { ?>
 							<span class="icon has-text-success">
 								<i class="fas fa-check-square"></i>
@@ -150,4 +156,4 @@
 		</div>
 	</main>
 
-<?php require_once 'partials/footer.php'; ?>
+<?php require 'partials/footer.php'; ?>

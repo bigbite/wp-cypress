@@ -1,14 +1,19 @@
 <?php
 
-namespace WP_Cypress\Seeder\Seeds;
+namespace WP_Cypress\Fixtures;
 
-use WP_Cypress\Seeder\Seeds\Seed;
+use WP_Cypress\Utils;
 
-class Post extends Seed {
-	public function defaults() {
+class Post extends Fixture {
+	/**
+	 * Gets default values of the post.
+	 *
+	 * @return array
+	 */
+	public function defaults(): array {
 		$title    = $this->faker->sentence();
 		$slug     = sanitize_title( $title );
-		$now      = $this->now();
+		$now      = Utils\now();
 		$defaults = [
 			'post_author'       => 1,
 			'post_type'         => 'post',
@@ -27,35 +32,56 @@ class Post extends Seed {
 		 * Optional post thumbnail, left out of defaults for performance.
 		[
 			'post_thumbnail'  => [
-			'url'             => 'https://unsplash.it/1140/768/?random',
-			'name'            => str_replace( '.', '', $this->faker->sentence() ),
+				'url'             => 'https://unsplash.it/1140/768/?random',
+				'name'            => str_replace( '.', '', $this->faker->sentence() ),
+			]
 		]
 		*/
 
 		return $defaults;
 	}
 
-	public function generate() {
+	/**
+	 * Generates a post record.
+	 *
+	 * @return void
+	 */
+	public function generate(): void {
 		$this->properties = array_merge( $this->defaults(), $this->properties );
-		$post             = wp_insert_post( $this->properties );
 
-		$this->add_meta( $post );
-		$this->add_thumbnail( $post );
+		$post_id = wp_insert_post( $this->properties );
 
-		return $post;
+		if ( is_wp_error( $post_id ) ) {
+			return;
+		}
+
+		$this->add_meta( $post_id );
+		$this->add_thumbnail( $post_id );
 	}
 
-	public function add_meta( $post ) {
+	/**
+	 * Attaches post meta if provided.
+	 *
+	 * @param integer $post_id
+	 * @return void
+	 */
+	public function add_meta( int $post_id ): void {
 		if ( ! isset( $this->properties['post_meta'] ) || ! is_array( $this->properties['post_meta'] ) ) {
 			return;
 		}
 
 		foreach ( $this->properties['post_meta'] as $key => $value ) {
-			add_post_meta( $post, $key, $value );
+			add_post_meta( $post_id, $key, $value );
 		}
 	}
 
-	public function add_thumbnail( $post ) {
+	/**
+	 * Downloads, uploads and attaches post thumbnail to post - if provided.
+	 *
+	 * @param integer $post_id
+	 * @return void
+	 */
+	public function add_thumbnail( int $post_id ): void {
 		if ( ! isset( $this->properties['post_thumbnail'] ) ) {
 			return;
 		}
@@ -67,13 +93,13 @@ class Post extends Seed {
 		];
 
 		if ( ! is_wp_error( $attributes['tmp_name'] ) ) {
-			$media = media_handle_sideload( $attributes, $post );
+			$media = media_handle_sideload( $attributes, $post_id );
 
 			if ( is_wp_error( $media ) ) {
 				return;
 			}
 
-			set_post_thumbnail( $post, $media );
+			set_post_thumbnail( $post_id, $media );
 		}
 	}
 }

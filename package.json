@@ -1,6 +1,6 @@
 {
   "name": "@bigbite/wp-cypress",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "description": "WordPress end to end testing with Cypress.io",
   "repository": "https://github.com/bigbite/wp-cypress",
   "author": {
@@ -16,8 +16,7 @@
     "wp-cypress": "./bin/script.js"
   },
   "scripts": {
-    "lint:scripts": "eslint \"lib/**/*.js\" \"bin/**/*.js\" \"plugin/**/*.js\"",
-    "postinstall": "./bin/postinstall.sh"
+    "lint:scripts": "eslint \"lib/**/*.js\" \"bin/**/*.js\" \"plugin/**/*.js\""
   },
   "husky": {
     "hooks": {
