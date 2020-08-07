@@ -15,7 +15,14 @@ RUN curl -o /bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/pha
 	&& wp --info --allow-root
 
 RUN set -ex; \
-	for version in WP_VERSIONS; do curl https://wordpress.org/wordpress-${version}.tar.gz > wordpress-${version}.tar.gz && mkdir -p /var/www/${version} && tar -xzf wordpress-${version}.tar.gz -C /var/www/${version} && mv /var/www/${version}/wordpress/* /var/www/${version} && rm -rf /var/www/${version}/wordpress && chown -R www-data:www-data /var/www/${version}; done
+	for version in WP_VERSIONS; \
+    do curl https://wordpress.org/wordpress-${version}.tar.gz > wordpress-${version}.tar.gz && \
+    mkdir -p /var/www/${version} && \
+    tar -xzf wordpress-${version}.tar.gz -C /var/www/${version} && \
+    mv /var/www/${version}/wordpress/* /var/www/${version} && \
+    rm -rf /var/www/${version}/wordpress && \
+    chown -R www-data:www-data /var/www/${version}; \
+  done
 
 EXPOSE 80
 
