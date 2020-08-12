@@ -39,4 +39,5 @@ Dockerfile
 docker-compose.yml
 debug.log
 config.json
-lib/cypress-plugin/tmp
+tmp
+wp-content
