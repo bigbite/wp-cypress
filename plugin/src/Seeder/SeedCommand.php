@@ -59,7 +59,7 @@ class SeedCommand {
 	 * @return void
 	 */
 	public function seed( string $seeder_name ): void {
-		$this->validate_seeder( $seeder_name );
+		//$this->validate_seeder( $seeder_name );
 
 		$start_time = microtime( true );
 
