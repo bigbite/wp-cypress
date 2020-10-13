@@ -6,7 +6,7 @@ use Exception;
 use WP_CLI;
 
 class SeedCommand {
-	const DEFAULT_SEEDS_DIR = 'wp-content/plugins/wp-cypress/src/seeds';
+	const DEFAULT_SEEDS_DIR = 'wp-content/plugins/wp-cypress/src/Seeds';
 
 	const USER_SEEDS_DIR = 'seeds';
 
