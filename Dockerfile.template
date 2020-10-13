@@ -19,6 +19,7 @@ RUN set -ex; \
     do curl https://wordpress.org/wordpress-${version}.tar.gz > wordpress-${version}.tar.gz && \
     mkdir -p /var/www/${version} && \
     tar -xzf wordpress-${version}.tar.gz -C /var/www/${version} && \
+    if WP_CONTENT; then rm -rf /var/www/${version}/wordpress/wp-content && mkdir /var/www/${version}/wordpress/wp-content; fi && \
     mv /var/www/${version}/wordpress/* /var/www/${version} && \
     rm -rf /var/www/${version}/wordpress && \
     chown -R www-data:www-data /var/www/${version}; \
