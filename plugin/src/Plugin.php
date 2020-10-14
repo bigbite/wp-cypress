@@ -9,7 +9,6 @@ use WP_Cypress\UserSwitchingCommand;
 
 class Plugin {
 	public function __construct() {
-		add_action( 'init', [ $this, 'bypass_auth' ], 1 );
 		add_action( 'init', [ $this, 'add_seed_command' ], 1 );
 		add_action( 'init', [ $this, 'add_debug_page' ], 1 );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_assets' ], 1 );
@@ -58,20 +57,5 @@ class Plugin {
 
 			die();
 		}
-	}
-
-	/**
-	 * Bypass auth by logging in as the default admin user if there isn't currently a user logged in.
-	 *
-	 * @return void
-	 */
-	public function bypass_auth(): void {
-		if ( is_user_logged_in() ) {
-			return;
-		}
-
-		wp_clear_auth_cookie();
-		wp_set_auth_cookie( 1, true );
-		wp_set_current_user( 1, 'admin' );
 	}
 };
