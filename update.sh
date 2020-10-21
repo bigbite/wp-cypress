@@ -1,11 +1,11 @@
-version=$1
+VERSION=$1
 HARD_RESET=$2
 
 shopt -s extglob
-rm -rf !(wp-config.php|seeds|wp-content|update.sh|.htaccess)
+rm -rf !(wp-config.php|wp-cypress-config.php|seeds|wp-content|update.sh|.htaccess)
 
-if ${HARD_RESET}; then rm wp-config.php && echo "Hello"; fi
+if ${HARD_RESET}; then rm wp-config.php; fi
 
-cp -rfp ../${version}/* ./
+cp -rfp ../${VERSION}/* ./
 
 wp --allow-root core version
