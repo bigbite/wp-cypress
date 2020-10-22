@@ -8,9 +8,9 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
 class SeedCommand {
-	const DEFAULT_SEEDS_DIR = 'wp-content/plugins/wp-cypress/src/Seeds';
+	const DEFAULT_SEEDS_DIR = 'wp-content/plugins/wp-cypress/src/Seeds/*';
 
-	const USER_SEEDS_DIR = 'seeds';
+	const USER_SEEDS_DIR = 'seeds/*';
 
 	/**
 	 * Find and call the relevant seeder when invoked.
@@ -42,11 +42,16 @@ class SeedCommand {
 	 * @return void
 	 */
 	public function include_dir( string $dir ): void {
-		$directory = new RecursiveDirectoryIterator( $dir );
-		$iterator  = new RecursiveIteratorIterator( $directory );
+		$files = glob( $dir );
 
-		foreach ( $iterator as $file ) {
-			require_once ABSPATH . $file->getPathname();
+		foreach ( $files as $filename ) {
+			if ( is_dir( $filename ) ) {
+				$this->include_dir( $filename . '/*' );
+			}
+
+			if ( is_file( $filename ) ) {
+				require_once $filename;
+			}
 		}
 	}
 
