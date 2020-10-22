@@ -46,7 +46,7 @@ class SeedCommand {
 		$iterator  = new RecursiveIteratorIterator( $directory );
 
 		foreach ( $iterator as $file ) {
-			require_once $info->getPathname();
+			require_once ABSPATH . $file->getPathname();
 		}
 	}
 
