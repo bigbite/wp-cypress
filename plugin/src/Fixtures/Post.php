@@ -47,9 +47,7 @@ class Post extends Fixture {
 	 * @return void
 	 */
 	public function generate(): void {
-		$this->properties = array_merge( $this->defaults(), $this->properties );
-
-		$post_id = wp_insert_post( $this->properties );
+		$post_id = wp_insert_post( array_merge( $this->defaults(), $this->properties ) );
 
 		if ( is_wp_error( $post_id ) ) {
 			return;

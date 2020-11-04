@@ -5,14 +5,13 @@ namespace WP_Cypress;
 use WP_CLI;
 use WP_Cypress\Fixtures;
 use WP_Cypress\Seeder\SeedCommand;
-use WP_Cypress\UserSwitchingCommand;
 
 class Plugin {
 	public function __construct() {
-		add_action( 'init', [ $this, 'bypass_auth' ], 1 );
 		add_action( 'init', [ $this, 'add_seed_command' ], 1 );
-		add_action( 'init', [ $this, 'add_debug_page' ], 1 );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_assets' ], 1 );
+
+		$this->add_user_command();
 	}
 
 	/**
@@ -44,34 +43,34 @@ class Plugin {
 	}
 
 	/**
-	 * Enable debug page
+	 * Add command to set which user should be set when bypassing auth.
 	 *
 	 * @return void
 	 */
-	public function add_debug_page(): void {
-		if ( isset( $_GET['wp-cypress'] ) && 'debug' === $_GET['wp-cypress'] ) { // phpcs:ignore
-			$config = json_decode( file_get_contents( ABSPATH . 'config.json' ) );
-
-			require_once ABSPATH . 'wp-admin/includes/plugin.php';
-			require_once WP_CYPRESS_PLUGIN . '/src/validation.php';
-			require_once WP_CYPRESS_PLUGIN . '/templates/debug/index.php';
-
-			die();
-		}
-	}
-
-	/**
-	 * Bypass auth by logging in as the default admin user if there isn't currently a user logged in.
-	 *
-	 * @return void
-	 */
-	public function bypass_auth(): void {
-		if ( is_user_logged_in() ) {
+	public function add_user_command(): void {
+		if ( ! class_exists( 'WP_CLI' ) ) {
 			return;
 		}
 
-		wp_clear_auth_cookie();
-		wp_set_auth_cookie( 1, true );
-		wp_set_current_user( 1, 'admin' );
+		WP_CLI::add_command( 'wp-cypress-set-user', [ $this, 'set_user' ] );
+	}
+
+	/**
+	 * Store the user ID in a tempfile of the user to bypass auth with.
+	 *
+	 * @param array $args
+	 * @return void
+	 */
+	public function set_user( $args ): void {
+		$user = get_user_by( 'login', $args[0] );
+
+		if ( ! $user ) {
+			WP_CLI::error( "User {$args[0]} doesn't exits." );
+			return;
+		}
+
+		file_put_contents( get_home_path() . '.userid', $user->ID );
+
+		WP_CLI::success( 'Current User set to ' . $args[0] );
 	}
 };

@@ -4,11 +4,13 @@ namespace WP_Cypress\Seeder;
 
 use Exception;
 use WP_CLI;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 class SeedCommand {
-	const DEFAULT_SEEDS_DIR = 'wp-content/plugins/wp-cypress/src/seeds';
+	const DEFAULT_SEEDS_DIR = 'wp-content/plugins/wp-cypress/src/Seeds/*';
 
-	const USER_SEEDS_DIR = 'seeds';
+	const USER_SEEDS_DIR = 'seeds/*';
 
 	/**
 	 * Find and call the relevant seeder when invoked.
@@ -27,15 +29,30 @@ class SeedCommand {
 			return;
 		}
 
-		foreach ( glob( getcwd() . '/' . self::USER_SEEDS_DIR . '/*.php' ) as $filename ) {
-			require_once $filename;
-		}
-
-		foreach ( glob( getcwd() . '/' . self::DEFAULT_SEEDS_DIR . '/*.php' ) as $filename ) {
-			require_once $filename;
-		}
+		$this->include_dir( self::USER_SEEDS_DIR );
+		$this->include_dir( self::DEFAULT_SEEDS_DIR );
 
 		$this->seed( $seeder_name );
+	}
+
+	/**
+	 * Recursively include all files in a directory
+	 *
+	 * @param string $dir
+	 * @return void
+	 */
+	public function include_dir( string $dir ): void {
+		$files = glob( $dir );
+
+		foreach ( $files as $filename ) {
+			if ( is_dir( $filename ) ) {
+				$this->include_dir( $filename . '/*' );
+			}
+
+			if ( is_file( $filename ) ) {
+				require_once $filename;
+			}
+		}
 	}
 
 	/**

@@ -1,0 +1,160 @@
+{
+  "required": [
+    "version"
+  ],
+  "properties": {
+    "version": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "seedsPath": {
+      "type": "string",
+      "errorMessage": "wp.seedsPath is not a string"
+    },
+    "multisite": {
+      "type": ["boolean", "string"],
+      "errorMessage": "multisite is not set to false, true or subdomains"
+    },
+    "url": {
+      "type": ["boolean", "string"],
+      "errorMessage": "url is invalid"
+    },
+    "port": {
+      "type": "number",
+      "errorMessage": "wp.port is not a number"
+    },
+    "configFile": {
+      "type": "string",
+      "pattern": "^.*.php$",
+      "errorMessage": "wp.configFile is invalid"
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "errorMessage": "wp.config is invalid"
+    },
+    "timezone": {
+      "type": "string",
+      "errorMessage": "wp.timezone is not a string"
+    },
+    "muPlugins": {
+      "type": "object",
+      "properties": {
+        "vip": {
+          "type": "boolean"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "path"
+          ]
+        },
+        {
+          "required": [
+            "vip"
+          ]
+        }
+      ],
+      "errorMessage": "wp.muPlugins is not a valid object"
+    },
+    "wpContent": {
+      "oneOf": [
+        {
+          "const": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "errorMessage": "wp.wpContent.path is not a string"
+            },
+            "activeTheme": {
+              "type": "string",
+              "errorMessage": "wp.wpContent.activeTheme is not a string"
+            },
+            "activePlugins": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "errorMessage": "wp.wpContent.activePlugins is not an array of strings"
+            }
+          },
+          "required": [
+            "path"
+          ]
+        }
+      ],
+      "errorMessage": "wp.wpContent has invalid properties"
+    }
+  },
+  "if": {
+    "properties": {
+      "wpContent": {
+        "const": false
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "plugins": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "errorMessage": "wp.plugins is not an array of strings"
+      },
+      "themes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "errorMessage": "wp.themes is not an array of strings"
+      }
+    },
+    "anyOf": [
+      {
+        "required": [
+          "themes"
+        ]
+      },
+      {
+        "required": [
+          "plugins"
+        ]
+      },
+      {
+        "required": [
+          "muPlugins"
+        ]
+      }
+    ],
+    "errorMessage": "Invalid config"
+  }
+}

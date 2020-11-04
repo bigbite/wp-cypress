@@ -13,7 +13,6 @@ if ( ! defined( 'WP_CYPRESS_PLUGIN' ) ) {
 }
 
 require_once WP_CYPRESS_PLUGIN . '/src/utils.php';
-require_once WP_CYPRESS_PLUGIN . '/src/validation.php';
 
 if ( is_readable( WP_CYPRESS_PLUGIN . '/vendor/autoload.php' ) ) {
 	include WP_CYPRESS_PLUGIN . '/vendor/autoload.php';
