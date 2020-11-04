@@ -20,6 +20,14 @@
       "type": "string",
       "errorMessage": "wp.seedsPath is not a string"
     },
+    "multisite": {
+      "type": ["boolean", "string"],
+      "errorMessage": "multisite is not set to false, true or subdomains"
+    },
+    "url": {
+      "type": ["boolean", "string"],
+      "errorMessage": "url is invalid"
+    },
     "port": {
       "type": "number",
       "errorMessage": "wp.port is not a number"
