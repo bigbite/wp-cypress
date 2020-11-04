@@ -6,13 +6,13 @@
 
 ------
 
-Cypress is designed to address the pain points of testing modern web applications. WP Cypress extends Cypress to address specific pain points developers and QA engineers face when testing WordPress `v5.*.*` applications. We have took care of the boring stuff, so you can spend your time writing integration tests that add value to your WordPress project.
+Cypress is designed to address the pain points of testing modern web applications. WP Cypress extends Cypress to address specific pain points developers and QA engineers face when testing modern WordPress applications. 
 
 ## Features
 
 - Run a single command to set up a testing environment.
 - Automate tests across multiple WordPress versions.
-- Test individual plugins, themes or a combination of multiple themes and plugins.
+- Test individual plugins, themes, a combination of multiple themes and plugins or an entire site.
 - Seed your database with test data using `WP_Cypress\Seeder`.
 - Teardown between blocks of tests.
 - Additional custom cypress commands.
