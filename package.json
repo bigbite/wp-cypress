@@ -1,6 +1,6 @@
 {
   "name": "@bigbite/wp-cypress",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "WordPress end to end testing with Cypress.io",
   "repository": "https://github.com/bigbite/wp-cypress",
   "author": {
