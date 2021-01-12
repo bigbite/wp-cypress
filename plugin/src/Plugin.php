@@ -62,14 +62,20 @@ class Plugin {
 	 * @return void
 	 */
 	public function set_user( $args ): void {
-		$user = get_user_by( 'login', $args[0] );
+		$user_id = 'false';
 
-		if ( ! $user ) {
-			WP_CLI::error( "User {$args[0]} doesn't exits." );
-			return;
+		if ( 'loggedout' !== $args[0] ) {
+			$user = get_user_by( 'login', $args[0] );
+
+			if ( ! $user ) {
+				WP_CLI::error( "User {$args[0]} doesn't exits." );
+				return;
+			}
+	
+			$user_id = $user->ID;
 		}
 
-		file_put_contents( get_home_path() . '.userid', $user->ID );
+		file_put_contents( get_home_path() . '.userid', $user_id );
 
 		WP_CLI::success( 'Current User set to ' . $args[0] );
 	}
