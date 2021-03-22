@@ -112,6 +112,11 @@
         }
       ],
       "errorMessage": "wp.wpContent has invalid properties"
+    },
+    "locale": {
+      "type": "string",
+      "pattern": "^[a-z]{2}_[A-Z]{2}$",
+      "errorMessage": "wp.locale is invalid"
     }
   },
   "if": {
