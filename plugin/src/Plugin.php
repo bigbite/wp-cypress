@@ -61,8 +61,19 @@ class Plugin {
 	 * @param array $args
 	 * @return void
 	 */
-	public function set_user( $args ): void {
+	public function set_user( $args, array $assoc_args ): void {
 		$user_id = 'false';
+
+		$user_id_file = ABSPATH . '.userid';
+
+		if ( isset( $assoc_args['logout'] ) ) {
+			if ( file_exists( $user_id_file ) ) {
+				unlink( $user_id_file );
+			}
+
+			WP_CLI::success( 'Current User logged out' );
+			return;
+		}
 
 		if ( 'loggedout' !== $args[0] ) {
 			$user = get_user_by( 'login', $args[0] );
@@ -71,12 +82,11 @@ class Plugin {
 				WP_CLI::error( "User {$args[0]} doesn't exits." );
 				return;
 			}
-	
+
 			$user_id = $user->ID;
 		}
 
-		file_put_contents( get_home_path() . '.userid', $user_id );
-
+		file_put_contents( $user_id_file, $user_id );
 		WP_CLI::success( 'Current User set to ' . $args[0] );
 	}
 };
