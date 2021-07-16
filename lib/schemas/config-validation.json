@@ -36,6 +36,10 @@
       "type": "number",
       "errorMessage": "wp.phpVersion is not a number"
     },
+    "dbPort": {
+      "type": "number",
+      "errorMessage": "wp.dbPort is not a number"
+    },
     "configFile": {
       "type": "string",
       "pattern": "^.*.php$",
