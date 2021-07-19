@@ -18,7 +18,7 @@ class SeedCommand {
 	 * @param array $args
 	 * @return void
 	 */
-	public function __invoke( array $args ): void {
+	public function __invoke( array $args, array $assoc_args ): void {
 		$seeder_name = $args[0];
 
 		if ( empty( $seeder_name ) ) {
@@ -31,6 +31,15 @@ class SeedCommand {
 
 		$this->include_dir( self::USER_SEEDS_DIR );
 		$this->include_dir( self::DEFAULT_SEEDS_DIR );
+
+		if ( isset( $assoc_args['clean'] ) ) {
+			$this->clean( $seeder_name );
+			return;
+		}
+
+		if ( isset( $assoc_args['clean-first'] ) ) {
+			$this->clean( $seeder_name );
+		}
 
 		$this->seed( $seeder_name );
 	}
@@ -91,5 +100,34 @@ class SeedCommand {
 		$run_time = round( microtime( true ) - $start_time, 2 );
 
 		WP_CLI::success( 'Seeded ' . $seeder_name . ' in ' . $run_time . ' seconds' );
+	}
+
+	/**
+	 * Run an individual seeder clean routine.
+	 *
+	 * @param string $seeder_name
+	 * @return void
+	 */
+	public function clean( string $seeder_name ): void {
+		$this->validate_seeder( $seeder_name );
+
+		$start_time = microtime( true );
+
+		try {
+			/** @var SeederInterface $seeder */
+			$seeder = new $seeder_name();
+
+			if ( ! method_exists( $seeder, 'clean' ) ) {
+				WP_CLI::error( "clean() method does not exist on seeder {$seeder} class." );
+			}
+
+			$seeder->clean();
+		} catch ( Exception $e ) {
+			WP_CLI::error( $e->getMessage() );
+		}
+
+		$run_time = round( microtime( true ) - $start_time, 2 );
+
+		WP_CLI::success( 'Seeder ' . $seeder_name . ' cleaned in ' . $run_time . ' seconds' );
 	}
 }
