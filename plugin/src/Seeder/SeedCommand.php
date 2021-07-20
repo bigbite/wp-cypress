@@ -18,7 +18,7 @@ class SeedCommand {
 	 * @param array $args
 	 * @return void
 	 */
-	public function __invoke( array $args, array $assoc_args ): void {
+	public function __invoke( array $args, array $assoc_args = [] ): void {
 		$seeder_name = $args[0];
 
 		if ( empty( $seeder_name ) ) {
