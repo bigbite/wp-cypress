@@ -115,7 +115,7 @@
     },
     "locale": {
       "type": "string",
-      "pattern": "^[a-z]{2}_[A-Z]{2}$",
+      "pattern": "^[a-z]{2,3}(_[A-Z]{2})?(_[a-z0-9]{4,8})?$",
       "errorMessage": "wp.locale is invalid"
     }
   },
