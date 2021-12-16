@@ -49,6 +49,7 @@
     "lodash": "^4.17.20",
     "node-fetch": "^2.6.0",
     "ora": "^4.0.3",
+    "prettier": "^2.5.1",
     "pretty-error": "^2.1.1",
     "shelljs": "^0.8.3"
   }

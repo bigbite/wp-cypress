@@ -1,6 +1,6 @@
 {
-  "extends": ["airbnb-base"],
-  "plugins": ["cypress"],
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["cypress", "prettier"],
   "ignorePatterns": ["lib/cypress-plugin/tmp/*"],
   "env": {
     "browser": true,
@@ -9,6 +9,13 @@
   },
   "parser": "babel-eslint",
   "rules": {
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+    "prettier/prettier": "error",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "arrow-parens": 2
   }
 }
