@@ -1,6 +1,6 @@
 {
   "name": "@bigbite/wp-cypress",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "WordPress end to end testing with Cypress.io",
   "repository": "https://github.com/bigbite/wp-cypress",
   "author": {
@@ -15,6 +15,9 @@
   "bin": {
     "wp-cypress": "./bin/script.js"
   },
+  "engines": {
+    "node": ">=12.22.0"
+  },
   "scripts": {
     "lint:scripts": "eslint \"lib/**/*.js\" \"bin/**/*.js\" \"plugin/**/*.js\""
   },
@@ -27,12 +30,13 @@
     "cypress": "^4.4.1"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
+    "@babel/core": "^7.16.5",
+    "@babel/eslint-parser": "^7.16.5",
+    "eslint": "^8.4.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.19.1",
-    "husky": "^4.2.3"
+    "husky": "^4.2.5"
   },
   "dependencies": {
     "ajv": "^6.12.6",
@@ -50,7 +54,7 @@
     "node-fetch": "^2.6.0",
     "ora": "^4.0.3",
     "prettier": "^2.5.1",
-    "pretty-error": "^2.1.1",
+    "pretty-error": "^4.0.0",
     "shelljs": "^0.8.3"
   }
 }
