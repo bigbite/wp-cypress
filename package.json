@@ -15,6 +15,9 @@
   "bin": {
     "wp-cypress": "./bin/script.js"
   },
+  "engines": {
+    "node": ">=12.22.0"
+  },
   "scripts": {
     "lint:scripts": "eslint \"lib/**/*.js\" \"bin/**/*.js\" \"plugin/**/*.js\""
   },
