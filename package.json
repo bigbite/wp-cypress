@@ -19,12 +19,9 @@
     "node": ">=12.22.0"
   },
   "scripts": {
-    "lint:scripts": "eslint \"lib/**/*.js\" \"bin/**/*.js\" \"plugin/**/*.js\""
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn run lint:scripts"
-    }
+    "test": "jest",
+    "lint:scripts": "eslint \"lib/**/*.js\" \"bin/**/*.js\" \"plugin/**/*.js\"",
+    "prepare": "husky install"
   },
   "peerDepencies": {
     "cypress": "^4.4.1"
@@ -36,7 +33,10 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.19.1",
-    "husky": "^4.2.5"
+    "husky": "^7.0.4",
+    "jest": "^27.4.5",
+    "jest-extended": "^1.2.0",
+    "mock-fs": "5.1.2"
   },
   "dependencies": {
     "ajv": "^6.12.6",
