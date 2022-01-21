@@ -41,3 +41,4 @@ debug.log
 config.json
 tmp
 wp-content
+coverage
