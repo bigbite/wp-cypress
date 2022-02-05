@@ -1,6 +1,6 @@
 {
   "name": "@bigbite/wp-cypress",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "WordPress end to end testing with Cypress.io",
   "repository": "https://github.com/bigbite/wp-cypress",
   "author": {
@@ -51,7 +51,7 @@
     "glob": "^7.1.6",
     "junk": "^3.1.0",
     "lodash": "^4.17.20",
-    "node-fetch": "^3.1.1",
+    "node-fetch": "^2.6.7",
     "ora": "^4.0.3",
     "pretty-error": "^4.0.0",
     "shelljs": "^0.8.5"
