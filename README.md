@@ -30,8 +30,3 @@ Please refer to the [Releases page](https://github.com/bigbite/wp-cypress/releas
 
 
 
-
-
-
-
-
