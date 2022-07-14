@@ -16,6 +16,20 @@
         }
       ]
     },
+    "inheritTests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "errorMessage": "wp.inheritTests is not an array of strings"
+    },
+    "inheritCommands": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "errorMessage": "wp.inheritCommands is not an array of strings"
+    },
     "seedsPath": {
       "type": "string",
       "errorMessage": "wp.seedsPath is not a string"
