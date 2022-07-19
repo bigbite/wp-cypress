@@ -32,6 +32,10 @@
       "type": "number",
       "errorMessage": "wp.port is not a number"
     },
+    "sslCertificatesPath": {
+      "type": "array",
+      "error": "sslCertificatesPath is not a string"
+    },
     "phpVersion": {
       "type": "number",
       "errorMessage": "wp.phpVersion is not a number"
