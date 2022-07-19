@@ -58,6 +58,7 @@
     "ora": "^4.0.3",
     "prettier": "^2.5.1",
     "pretty-error": "^4.0.0",
+    "semver": "^7.3.7",
     "shelljs": "^0.8.5"
   }
 }
