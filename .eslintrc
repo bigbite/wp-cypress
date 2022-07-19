@@ -1,14 +1,25 @@
 {
-  "extends": ["airbnb-base"],
-  "plugins": ["cypress"],
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["cypress", "prettier", "jest"],
   "ignorePatterns": ["lib/cypress-plugin/tmp/*"],
   "env": {
     "browser": true,
     "node": true,
-    "cypress/globals": true
+    "cypress/globals": true,
+    "jest/globals": true
   },
-  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": false
+  },
   "rules": {
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+    "prettier/prettier": "error",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "arrow-parens": 2
   }
 }
