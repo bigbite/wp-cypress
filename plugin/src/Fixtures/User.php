@@ -19,7 +19,7 @@ class User extends Fixture {
 			'display_name'    => $this->faker->name(),
 			'first_name'      => $this->faker->firstName(),
 			'last_name'       => $this->faker->lastName(),
-			'post_excerpt'    => $this->faker->realText( 200 ),
+			'description'     => $this->faker->realText( 200 ),
 			'user_registered' => Utils\now(),
 			'role'            => 'administrator',
 		];
