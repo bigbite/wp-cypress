@@ -3,12 +3,12 @@
   "description": "Modifications for a test environment with Cypress.",
   "type": "wordpress-plugin",
   "license": "MIT",
+  "require": {
+    "fakerphp/faker": "^1.19"
+  },
   "autoload": {
     "psr-4": {
       "WP_Cypress\\": "src/"
     }
-  },
-  "require": {
-    "fakerphp/faker": "^1.19"
   }
 }
