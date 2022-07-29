@@ -47,8 +47,8 @@
       "errorMessage": "wp.port is not a number"
     },
     "phpVersion": {
-      "type": "number",
-      "errorMessage": "wp.phpVersion is not a number"
+      "type": ["number", "string"],
+      "errorMessage": "wp.phpVersion is not a number or string"
     },
     "phpMemoryLimit": {
       "type": "string",
