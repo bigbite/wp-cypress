@@ -121,6 +121,13 @@
                 "type": "string"
               },
               "errorMessage": "wp.wpContent.activePlugins is not an array of strings"
+            },
+            "pluginsActivatedAfterTheme": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "errorMessage": "wp.wpContent.pluginsActivatedAfterTheme is not an array of strings"
             }
           },
           "required": [
