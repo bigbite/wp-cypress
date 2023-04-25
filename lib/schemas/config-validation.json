@@ -32,6 +32,23 @@
       "type": "number",
       "errorMessage": "wp.port is not a number"
     },
+    "sslCertificate": {
+      "type": "object",
+      "properties": {
+        "cert": {
+          "type": "string",
+          "errorMessage": "wp.sslCertificate.cert is not a string"
+        },
+        "key": {
+          "type": "string",
+          "errorMessage": "wp.sslCertificate.key is not a string"
+        }
+      }
+    },
+    "sslPort": {
+      "type": "number",
+      "errorMessage": "wp.sslPort is not a number"
+    },
     "phpVersion": {
       "type": ["number", "string"],
       "errorMessage": "wp.phpVersion is not a number or string"
