@@ -20,6 +20,10 @@
       "type": "string",
       "errorMessage": "wp.seedsPath is not a string"
     },
+    "adminUsername": {
+      "type": "string",
+      "errorMessage": "wp.adminUsername is not a string"
+    },
     "multisite": {
       "type": ["boolean", "string"],
       "errorMessage": "multisite is not set to false, true or subdomains"
