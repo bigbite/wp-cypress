@@ -6,10 +6,6 @@ jQuery(document).ready(() => {
   const nux = select('core/nux');
 
   if (!nux) {
-    if (select('core/edit-post').isFeatureActive('welcomeGuide')) {
-      dispatch('core/edit-post').toggleFeature('welcomeGuide');
-    }
-
     return;
   }
 
