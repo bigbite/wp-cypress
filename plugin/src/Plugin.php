@@ -9,6 +9,7 @@ use WP_Cypress\Seeder\SeedCommand;
 class Plugin {
 	public function __construct() {
 		add_action( 'init', [ $this, 'add_seed_command' ], 1 );
+		add_action( 'init', [ $this, 'initialize_admin_user_meta' ], 0 );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_assets' ], 1 );
 
 		$this->add_user_command();
@@ -88,5 +89,13 @@ class Plugin {
 
 		file_put_contents( $user_id_file, $user_id );
 		WP_CLI::success( 'Current User set to ' . $args[0] );
+	}
+
+	public function initialize_admin_user_meta(): void {
+		update_user_meta(1, 'wp_persisted_preferences', [
+			"core/edit-post" => [
+				"welcomeGuide" => false,
+			],
+		]);
 	}
 };
