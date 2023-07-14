@@ -22,6 +22,13 @@ class User extends Fixture {
 			'description'     => $this->faker->realText( 200 ),
 			'user_registered' => Utils\now(),
 			'role'            => 'administrator',
+			'meta_input' => [
+				'wp_persisted_preferences' => [
+					"core/edit-post" => [
+						"welcomeGuide" => false,
+					],
+				],
+			],
 		];
 	}
 
