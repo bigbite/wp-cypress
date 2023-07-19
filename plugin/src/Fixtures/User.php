@@ -11,6 +11,9 @@ class User extends Fixture {
 	 * @return array
 	 */
 	public function defaults(): array {
+		global $wpdb;
+		$user_preferences_meta_key = $wpdb->get_blog_prefix() . 'persisted_preferences';
+
 		return [
 			'user_pass'       => 'password',
 			'user_login'      => $this->faker->unique()->userName(),
@@ -23,7 +26,7 @@ class User extends Fixture {
 			'user_registered' => Utils\now(),
 			'role'            => 'administrator',
 			'meta_input' => [
-				'wp_persisted_preferences' => [
+				$user_preferences_meta_key => [
 					"core/edit-post" => [
 						"welcomeGuide" => false,
 					],

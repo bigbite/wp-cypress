@@ -92,7 +92,10 @@ class Plugin {
 	}
 
 	public function initialize_admin_user_meta(): void {
-		update_user_meta(1, 'wp_persisted_preferences', [
+		global $wpdb;
+		$user_preferences_meta_key = $wpdb->get_blog_prefix() . 'persisted_preferences';
+
+		update_user_meta(1, $user_preferences_meta_key, [
 			"core/edit-post" => [
 				"welcomeGuide" => false,
 			],
