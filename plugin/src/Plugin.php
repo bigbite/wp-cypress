@@ -101,10 +101,12 @@ class Plugin {
 		global $wpdb;
 		$user_preferences_meta_key = $wpdb->get_blog_prefix() . 'persisted_preferences';
 
-		update_user_meta(1, $user_preferences_meta_key, [
-			"core/edit-post" => [
-				"welcomeGuide" => false,
-			],
-		]);
+		if ( !get_user_meta(1, $user_preferences_meta_key) ) {
+			update_user_meta(1, $user_preferences_meta_key, [
+				"core/edit-post" => [
+					"welcomeGuide" => false,
+				],
+			]);
+		}
 	}
 };
