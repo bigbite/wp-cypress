@@ -91,6 +91,12 @@ class Plugin {
 		WP_CLI::success( 'Current User set to ' . $args[0] );
 	}
 
+	/**
+	 * Sets default meta values on the root/admin user (this has to be done
+	 * separately from the other users)
+	 *
+	 * @return void
+	 */
 	public function initialize_admin_user_meta(): void {
 		global $wpdb;
 		$user_preferences_meta_key = $wpdb->get_blog_prefix() . 'persisted_preferences';
