@@ -6,6 +6,7 @@ jQuery(document).ready(() => {
   const nux = select('core/nux');
 
   if (!nux) {
+    // needed for some earlier versions of WP
     if (select('core/edit-post').isFeatureActive('welcomeGuide')) {
       dispatch('core/edit-post').toggleFeature('welcomeGuide');
     }
