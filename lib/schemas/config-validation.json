@@ -20,6 +20,10 @@
       "type": "string",
       "errorMessage": "wp.seedsPath is not a string"
     },
+    "noDocker": {
+      "type": "boolean",
+      "errorMessage": "wp.noDocker is not true or false"
+    },
     "multisite": {
       "type": ["boolean", "string"],
       "errorMessage": "multisite is not set to false, true or subdomains"
