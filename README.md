@@ -19,7 +19,7 @@ Cypress is designed to address the pain points of testing modern web application
 
 ## Documentation
 
-Please refer to the [Github Wiki](https://github.com/bigbite/wp-cypress/wiki) for documentation.
+Please refer to the [GitHub Wiki](https://github.com/bigbite/wp-cypress/wiki) for documentation.
 
 ## Contributing
 
@@ -27,6 +27,3 @@ Please refer to our [contributing guidelines](https://github.com/bigbite/wp-cypr
 
 ## Changelog
 Please refer to the [Releases page](https://github.com/bigbite/wp-cypress/releases) for the changelog.
-
-
-
