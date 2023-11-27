@@ -9,6 +9,7 @@ use WP_Cypress\Seeder\SeedCommand;
 class Plugin {
 	public function __construct() {
 		add_action( 'init', [ $this, 'add_seed_command' ], 1 );
+		add_action( 'init', [ $this, 'initialize_admin_user_meta' ], 0 );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_assets' ], 1 );
 
 		$this->add_user_command();
@@ -88,5 +89,24 @@ class Plugin {
 
 		file_put_contents( $user_id_file, $user_id );
 		WP_CLI::success( 'Current User set to ' . $args[0] );
+	}
+
+	/**
+	 * Sets default meta values on the root/admin user (this has to be done
+	 * separately from the other users)
+	 *
+	 * @return void
+	 */
+	public function initialize_admin_user_meta(): void {
+		global $wpdb;
+		$user_preferences_meta_key = $wpdb->get_blog_prefix() . 'persisted_preferences';
+
+		if ( !get_user_meta(1, $user_preferences_meta_key) ) {
+			update_user_meta(1, $user_preferences_meta_key, [
+				"core/edit-post" => [
+					"welcomeGuide" => false,
+				],
+			]);
+		}
 	}
 };
