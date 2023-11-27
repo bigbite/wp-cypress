@@ -20,6 +20,10 @@
       "type": "string",
       "errorMessage": "wp.seedsPath is not a string"
     },
+    "noDocker": {
+      "type": "boolean",
+      "errorMessage": "wp.noDocker is not true or false"
+    },
     "adminUsername": {
       "type": "string",
       "errorMessage": "wp.adminUsername is not a string"
@@ -121,6 +125,13 @@
                 "type": "string"
               },
               "errorMessage": "wp.wpContent.activePlugins is not an array of strings"
+            },
+            "pluginsActivatedAfterTheme": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "errorMessage": "wp.wpContent.pluginsActivatedAfterTheme is not an array of strings"
             }
           },
           "required": [
