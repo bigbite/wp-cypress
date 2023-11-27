@@ -5,7 +5,7 @@
  * Description: Modifications for a test environment with Cypress.
  * Author: Big Bite
  * Author URI: https://bigbite.net
- * Version: 1.0.0
+ * Version: 1.0.0-rc.5
  */
 
 if ( ! defined( 'WP_CYPRESS_PLUGIN' ) ) {
