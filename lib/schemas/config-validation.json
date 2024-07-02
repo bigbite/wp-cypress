@@ -24,6 +24,10 @@
       "type": "boolean",
       "errorMessage": "wp.noDocker is not true or false"
     },
+    "adminUsername": {
+      "type": "string",
+      "errorMessage": "wp.adminUsername is not a string"
+    },
     "multisite": {
       "type": ["boolean", "string"],
       "errorMessage": "multisite is not set to false, true or subdomains"
